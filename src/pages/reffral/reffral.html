@@ -1,0 +1,55 @@
+<ion-header>
+
+  <ion-navbar>
+  	<button  float-left class="icon-back">
+      <ion-icon  name="arrow-back" (click)="goback()"></ion-icon>
+    </button>
+	<ion-title float-left text-center>Reffral</ion-title>
+    
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+	<ion-card>
+		<ion-card-header>
+	        <ion-card-title>Qrcode add member</ion-card-title>
+	    </ion-card-header>
+	    <ion-card-content>
+			<ion-grid>
+				<ion-row text-center>
+					<ion-col col-12 text-center>
+						<img class="qr-scanner-img"   src="https://chart.googleapis.com/chart?chs=200x200&cht=qr&chl=customer:{{customer_id}}_kjfhkawhdkajhdkashdkjadkhaskdasd" />
+					</ion-col>
+				</ion-row>
+				
+			</ion-grid>
+		</ion-card-content>
+	</ion-card>
+	<div class="clear_div"></div>
+	<ion-card>
+		<ion-card-header style="">
+	        <ion-card-title>List member</ion-card-title>
+	    </ion-card-header>
+	    <ion-card-content style="padding: 5px;">
+			<ion-list *ngFor="let item of history" style="border-bottom: 1px solid #eee;    margin-bottom: 1px;">
+			  <ion-item  [ngClass]="{'none-active-email': item.active_email === 0}" >
+			    <ion-avatar item-start>
+			      <img src="{{item.img_profile}}">
+			    </ion-avatar>
+			    <div float-left>
+			    <h2 >{{item.email}}</h2>
+			    <h3 style="color: #6d6c6c">{{item.date_added}}</h3>
+			    </div>
+			    <span float-right style="background: #cecece; border-radius: 10px; padding: 5px 10px; color: #4CAF50; font-size: 14px; margin-top: 8px;" (click)="ViewInfomationUser(item.customer_id)">View</span>
+			  </ion-item>
+			  <p text-center  *ngIf="count_history == 0">No data</p>
+			</ion-list>
+		</ion-card-content>
+		<ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+		   <ion-infinite-scroll-content></ion-infinite-scroll-content>
+		 </ion-infinite-scroll>
+		
+	</ion-card>
+</ion-content>

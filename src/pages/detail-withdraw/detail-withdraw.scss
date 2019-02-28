@@ -1,0 +1,74 @@
+page-detail-withdraw {
+	.border{
+		border:1px solid #eee;
+	}
+	.text_description{
+		padding: 10px 20px;
+	    line-height: 22px;
+	    color: #4c4c4c;
+	    position: relative;
+	    z-index: 99999;
+	}
+	.mywallet{
+		margin-top: -20px;
+		width: 100%;
+		float: left;
+		position: relative;
+		z-index: 9999;
+	}
+	.qr-scanner-img{
+		margin-top: -54px;
+	    position: relative;
+	    z-index: 1;
+    	display: block;
+	    width: 64%;
+	    margin: 0 auto;
+	}
+	.pending{
+		text-transform: capitalize;
+		
+		font-weight: bold;
+		opacity: 0.6;
+	}
+	.border-tab{
+		border:1px solid #b7b7b7;
+		border-top: none;
+	}
+	.border-tab.active{
+		background: #4caf50;
+	}
+	.border-tab.active h3{
+		color: #fff;
+	}
+	.card-header-md{
+		padding-top: 5px;
+		padding-bottom: 5px;
+	}
+	.label-md{
+		margin: 0px;
+	}
+	.item-md.item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner, .item-md.item-input.ng-valid.input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner{
+	    box-shadow: none;
+	  }
+	  .item-md.item-input.item-input-has-focus .item-inner, .item-md.item-input.input-has-focus .item-inner{
+	    box-shadow: none;
+	  }
+	.item-input .label-md, .item-select .label-md, .item-datetime .label-md {
+	    color: #5f5f5f;
+	}
+	.button-default  {
+	    padding: 19px !important;
+	    background: #4CAF50 !important;
+	    margin-top: 22px;
+	}
+	.text-error{
+		color: red;
+		margin-top: 10px;
+	}
+	.card-header{
+		padding-left: 5px;
+	}
+	.card-content{
+		padding: 0px;
+	}
+}

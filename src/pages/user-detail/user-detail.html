@@ -1,0 +1,85 @@
+<ion-header>
+
+  <ion-navbar>
+	<ion-title float-left text-center>Infomation User</ion-title>
+    
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+	<ion-card>
+		
+	    <ion-card-content>
+			<ion-grid>
+				<ion-row text-center>
+					<ion-col col-12 text-center>
+						<img class="img-profile"  src="{{infomation.img_profile}}" />
+						<p>{{infomation.email}}</p>
+					</ion-col>
+				</ion-row>
+				
+			</ion-grid>
+		</ion-card-content>
+	</ion-card>
+	<div class="clear_div"></div>
+	<ion-card>
+		<ion-card-header>
+	      <ion-card-title>Infomation</ion-card-title>
+	      </ion-card-header>
+	      <ion-card-content>
+	      	<ion-grid>
+		      	<ion-row>
+		          <ion-col style="border: 1px solid #eee;border-bottom: none; border-right: none;">
+		            <ion-label text-right>Email</ion-label>
+		          </ion-col>
+		          <ion-col style="border: 1px solid #eee;border-bottom: none; ">
+		            <ion-label text-left>{{infomation.email}}</ion-label>
+		          </ion-col>
+		        </ion-row>
+		        <ion-row>
+		          <ion-col style="border: 1px solid #eee;border-bottom: none; border-right: none;">
+		            <ion-label text-right>Date Create</ion-label>
+		          </ion-col>
+		          <ion-col style="border: 1px solid #eee;border-bottom: none; ">
+		            <ion-label text-left>{{infomation.date_added}}</ion-label>
+		          </ion-col>
+		        </ion-row>
+		        <ion-row>
+		          <ion-col style="border: 1px solid #eee; border-right: none;">
+		            <ion-label text-right>Investment</ion-label>
+		          </ion-col>
+		          <ion-col style="border: 1px solid #eee; ">
+		            <ion-label text-left>{{infomation.investment}}</ion-label>
+		          </ion-col>
+		        </ion-row>
+		        
+		       	
+			</ion-grid>
+	    </ion-card-content>
+	</ion-card>
+	<div class="clear_div"></div>
+	<ion-card>	
+		<ion-card-header style="">
+	        <ion-card-title>List member</ion-card-title>
+	    </ion-card-header>
+	    <ion-card-content style="padding: 5px;">
+			<ion-list *ngFor="let item of history">
+			  <ion-item style="border-bottom: 1px solid #eee" [ngClass]="{'none-active-email': item.active_email === 0}" (click)="ViewInfomationUser(item.customer_id)">
+			    <ion-avatar item-start>
+			      <img src="{{item.img_profile}}">
+			    </ion-avatar>
+			    <h2>{{item.email}}</h2>
+			    <h3>{{item.date_added}}</h3>
+			    
+			  </ion-item>
+			</ion-list>
+			<p text-center  *ngIf="count_history == 0">No data</p>
+		</ion-card-content>
+		<ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+		   <ion-infinite-scroll-content></ion-infinite-scroll-content>
+		 </ion-infinite-scroll>
+		
+	</ion-card>
+</ion-content>

@@ -1,0 +1,52 @@
+<ion-header>
+
+  <ion-navbar>
+  	<button  float-left class="icon-back">
+      <ion-icon  name="arrow-back" (click)="goback()"></ion-icon>
+    </button>
+	<ion-title float-left text-center>Transaction History</ion-title>
+    
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content>
+	<ion-card>
+		<ion-card-header>
+	        <ion-card-title>Transaction History</ion-card-title>
+	    </ion-card-header>
+
+	    <ion-card-content class="history">
+	    	<ion-grid *ngFor="let item of history" style="border-bottom: 1px solid #eee;" >
+		      	<ion-row >
+		          	<ion-col col-5>
+		          		<span float-left><span class="iconstatus " [ngClass]="{'finish_withdraw': item.status === 1}"></span> {{item.type}}</span>
+		          	</ion-col>
+		          	<ion-col col-7>
+		          			<span float-right class="amount">+{{item.amount}}  {{item.currency}} </span>
+		          		
+		          	</ion-col>
+		        </ion-row>
+		        <ion-row>
+		          	<ion-col col-5>
+		          		<span float-left class="date_added">{{item.date_added}}</span>
+		          	</ion-col>
+		          	<ion-col col-7>
+	          			
+	          			<span float-right >Finish</span>
+		          	</ion-col>
+		        </ion-row>
+		        
+			</ion-grid>
+
+
+	    	<ion-grid>
+		      	
+
+		       	<ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+				   <ion-infinite-scroll-content></ion-infinite-scroll-content>
+				 </ion-infinite-scroll>
+			</ion-grid>
+	    </ion-card-content>
+	</ion-card>
+</ion-content>

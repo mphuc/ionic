@@ -1,0 +1,48 @@
+page-lock {
+	.keyboard{
+		position: absolute;
+		bottom: 0;
+		width: 100%;
+	}
+	.keyboard ion-col{
+		text-align: center;
+	    font-size: 30px;
+	    height: 65px;
+	    background: #4CAF50;
+	    color: #fff;
+	    border-left: none;
+	    border-bottom: none;
+	    line-height: 51px;
+	}
+
+	.keyboard ion-col:active{
+	    background: #37c53d;
+	}
+	.logo{
+		margin-top: 8%;
+	}
+	.logo img{
+		margin: 0 auto;
+	}
+	.pin{
+		margin-top: 30px;
+	}
+	.pin p{
+		width: 100%;
+	}
+	.pin .radio{
+		margin: 0 auto;
+	}
+	.pin span{
+		width: 40px;
+		height: 40px;
+		border-radius: 50%;
+		border: 1px solid #4caf50;
+		margin-right: 10px;
+		float: left;	
+		margin-top:10px;
+	}
+	.pin span.active{
+		background: #4caf50;
+	}
+}
