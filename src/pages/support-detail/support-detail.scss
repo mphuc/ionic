@@ -1,4 +1,4 @@
-page-support {
+page-support-detail {
 	.border{
 		border:1px solid #eee;
 	}
@@ -135,5 +135,29 @@ page-support {
 		border: none !important;
 		box-shadow: none !important;
 	}
-	
+	.img_profile_support{
+		width: 55px;
+	    border-radius: 50%;
+	    height: 55px;
+	    margin: 0 auto;
+	}
+	.message_support{
+		
+		color: #353535;
+	}
+	.border-bottom{
+		border-bottom: 1px solid #eee;
+	}
+	.date_support{
+        color: #888787;
+	    font-size: 14px;
+	    position: absolute;
+	    bottom: 0;
+	}
+	.date_support.right{
+		right: 0;
+	}
+	.date_support.left{
+		left: 0;
+	}
 }

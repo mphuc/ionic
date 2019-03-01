@@ -1,18 +1,79 @@
-<!--
-  Generated template for the SupportPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
   <ion-navbar>
-    <ion-title>support</ion-title>
+  	<button  float-left class="icon-back">
+      <ion-icon  name="arrow-back" (click)="goback()"></ion-icon>
+    </button>
+	<ion-title float-left text-center>Support</ion-title>
+    
   </ion-navbar>
 
 </ion-header>
 
+<ion-content>
+	<ion-card>
+		<ion-card-header>
+	        <ion-card-title>Support</ion-card-title>
+	    </ion-card-header>
+	    <ion-card-content>
+	    	<form (ngSubmit)="SubmitForm()">
+	 			<ion-list>
 
-<ion-content padding>
+				  <ion-item >
+				    <ion-label stacked>Title</ion-label>
+				    <ion-input [(ngModel)]="form.title" class="border" name="title" type="text"></ion-input>
+				  </ion-item>
 
+				  <ion-item >
+				    <ion-label stacked>Content</ion-label>
+				    <ion-textarea class="border" [(ngModel)]="form.content" name="content" rows="5"  ></ion-textarea>
+				  </ion-item>
+
+				</ion-list>
+				<ion-row>
+					<ion-col >
+						<button ion-button full>Send</button>
+					</ion-col>
+				</ion-row>
+			</form>
+	    </ion-card-content>
+	</ion-card>
+	<div class="clear_div"></div>
+
+	
+	<ion-card>
+		<ion-card-header>
+	        <ion-card-title>History</ion-card-title>
+	    </ion-card-header>
+
+	    <ion-card-content class="history">
+	    	<!-- (click)="ViewDetailWithdraw(item._id)" -->
+		    <ion-grid  *ngFor="let item of history " style="border-bottom: 1px solid #eee;" >
+		      	<ion-row >
+		          	<ion-col col-9 style="max-height: 41px;overflow: hidden;">
+		          		<span float-left><span class="iconstatus " [ngClass]="{'finish_withdraw': item.status === 1}"></span> {{item.subject}} </span>
+		          	</ion-col>
+		          	<ion-col col-3>
+		          		<span float-right text-center style="background: #cecece; border-radius: 10px; padding: 5px 10px; color: #4CAF50; font-size: 14px; margin-top: 3px;" (click)="ViewDetailSupport(item._id)">View</span>
+		          	</ion-col>
+		          	
+		        </ion-row>
+		        <ion-row>
+		          	<ion-col col-5>
+		          		<span float-left class="date_added">{{item.date_added}}</span>
+		          	</ion-col>
+		          	<ion-col col-7>
+	          			<span style="color: #7d7b7b; font-size: 14px;" float-right *ngIf="item.status == 0">Not answered</span>
+	          			<span style="color: #7d7b7b; font-size: 14px;" float-right *ngIf="item.status == 1">Answered</span>
+		          	</ion-col>
+		        </ion-row>
+		        
+			</ion-grid>
+			<p text-center  *ngIf="count_history == 0">No data</p>
+			<ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+				   <ion-infinite-scroll-content></ion-infinite-scroll-content>
+				 </ion-infinite-scroll>
+	    </ion-card-content>
+
+	</ion-card>
 </ion-content>

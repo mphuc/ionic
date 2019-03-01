@@ -21,6 +21,7 @@ export class TransactionHistoryPage {
 
 	history : any;
 	customer_id :any;
+	count_history = 0;
   constructor(
   	public navCtrl: NavController, 
   	public navParams: NavParams,
@@ -50,6 +51,7 @@ export class TransactionHistoryPage {
 					{
 						loading.dismiss();
 				  		this.history =  data;
+				  		this.count_history = data.length;
 					}
 					else
 					{

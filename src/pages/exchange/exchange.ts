@@ -38,6 +38,8 @@ export class ExchangePage {
   }
 
 	ionViewDidLoad() {
+		this.form['from_currency'] = 'BTC';
+		this.form['to_currency'] = 'ETH';
 		this.storage.get('customer_id')
 		.then((customer_id) => {
 			if (customer_id) 
@@ -113,7 +115,7 @@ export class ExchangePage {
 
 
 	SubmitForm() {
-		this.validateform = true;
+		
 		if (this.form['from_currency'] == null || this.form['from_currency'] === "" || this.form['to_currency'] == null || this.form['to_currency'] === "" || this.form['to_currency'] == this.form['from_currency'])
 		{
 			this.AlertToast('Please select conversion currency');
@@ -130,7 +132,7 @@ export class ExchangePage {
 
 				const confirm = this.alertCtrl.create({
 			      title: 'Confirm exchange?',
-			      message: 'Would you like to exchange '+this.form['amount']+' '+this.form['from_currency']+' via '+this.form['to_currency']+' ?',
+			      message: 'Do you want to exchange '+this.form['amount']+' '+this.form['from_currency']+' to '+this.form['to_currency']+'?',
 			      buttons: [
 			        {
 			          text: 'Cancel',
@@ -187,8 +189,7 @@ export class ExchangePage {
 								toast.present();
 		            			this.form['amount_estimate'] = '';
 		            			this.form['amount'] = '';
-		            			this.form['from_currency'] = '';
-		            			this.form['to_currency'] = '';
+		            			
 								this.reLoadPage();
 
 							}
@@ -275,7 +276,7 @@ export class ExchangePage {
 				let price_form = 0;
 				let form_usd = 0;
 				let price_to = 0;
-				let to_coin_exchange = 0;
+				
 				if (this.form['from_currency'] == 'BTC')
 				{
 					price_form = this.price_coin['btc_usd'];
@@ -328,8 +329,8 @@ export class ExchangePage {
 				}
 
 				form_usd = price_form* parseFloat(value);
-				to_coin_exchange = form_usd/price_to;
-				this.form['amount_estimate'] = to_coin_exchange;
+				let to_coin_exchange = (form_usd/price_to).toFixed(8);
+				this.form['amount_estimate'] = to_coin_exchange.toString();
 				
 			}
 		}
@@ -344,4 +345,140 @@ export class ExchangePage {
 	    });
 	    toast.present();
   	}
+  	onChangeSelectFrom(value){
+  		if (this.form['amount'] != "" && this.form['to_currency'] != "" && this.form['to_currency'] != value)
+		{
+			if (value)
+			{
+				let price_form = 0;
+				let form_usd = 0;
+				let price_to = 0;
+				
+				if (value == 'BTC')
+				{
+					price_form = this.price_coin['btc_usd'];
+				}
+				if (value == 'LTC')
+				{
+					price_form = this.price_coin['ltc_usd'];
+				}
+				if (value == 'ETH')
+				{
+					price_form = this.price_coin['eth_usd'];
+				}
+				if (value == 'XRP')
+				{
+					price_form = this.price_coin['xrp_usd'];
+				}
+				if (value == 'USDT')
+				{
+					price_form = this.price_coin['usdt_usd'];
+				}
+				if (value == 'STO')
+				{
+					price_form = this.price_coin['coin_usd'];
+				}
+
+
+				if (this.form['to_currency'] == 'BTC')
+				{
+					price_to = this.price_coin['btc_usd'];
+				}
+				if (this.form['to_currency'] == 'LTC')
+				{
+					price_to = this.price_coin['ltc_usd'];
+				}
+				if (this.form['to_currency'] == 'ETH')
+				{
+					price_to = this.price_coin['eth_usd'];
+				}
+				if (this.form['to_currency'] == 'XRP')
+				{
+					price_to = this.price_coin['xrp_usd'];
+				}
+				if (this.form['to_currency'] == 'USDT')
+				{
+					price_to = this.price_coin['usdt_usd'];
+				}
+				if (this.form['to_currency'] == 'STO')
+				{
+					price_to = this.price_coin['coin_usd'];
+				}
+
+				form_usd = price_form* parseFloat(this.form['amount']);
+				let to_coin_exchange = (form_usd/price_to).toFixed(8);
+				this.form['amount_estimate'] = to_coin_exchange.toString();
+				
+			}
+		}
+  	}
+
+  	onChangeSelectTo(value){
+		if (this.form['from_currency'] != "" && this.form['amount'] != "" && value != this.form['from_currency'])
+		{
+			if (value)
+			{
+				let price_form = 0;
+				let form_usd = 0;
+				let price_to = 0;
+				
+				if (this.form['from_currency'] == 'BTC')
+				{
+					price_form = this.price_coin['btc_usd'];
+				}
+				if (this.form['from_currency'] == 'LTC')
+				{
+					price_form = this.price_coin['ltc_usd'];
+				}
+				if (this.form['from_currency'] == 'ETH')
+				{
+					price_form = this.price_coin['eth_usd'];
+				}
+				if (this.form['from_currency'] == 'XRP')
+				{
+					price_form = this.price_coin['xrp_usd'];
+				}
+				if (this.form['from_currency'] == 'USDT')
+				{
+					price_form = this.price_coin['usdt_usd'];
+				}
+				if (this.form['from_currency'] == 'STO')
+				{
+					price_form = this.price_coin['coin_usd'];
+				}
+
+
+				if (value == 'BTC')
+				{
+					price_to = this.price_coin['btc_usd'];
+				}
+				if (value == 'LTC')
+				{
+					price_to = this.price_coin['ltc_usd'];
+				}
+				if (value == 'ETH')
+				{
+					price_to = this.price_coin['eth_usd'];
+				}
+				if (value == 'XRP')
+				{
+					price_to = this.price_coin['xrp_usd'];
+				}
+				if (value == 'USDT')
+				{
+					price_to = this.price_coin['usdt_usd'];
+				}
+				if (value == 'STO')
+				{
+					price_to = this.price_coin['coin_usd'];
+				}
+
+				form_usd = price_form* parseFloat(this.form['amount']);
+
+				let to_coin_exchange = (form_usd/price_to).toFixed(8);
+				this.form['amount_estimate'] = to_coin_exchange.toString();
+				
+			}
+		}
+	}
 }

@@ -58,7 +58,7 @@ page-exchange {
 	}
 	.button-default  {
 	    padding: 19px !important;
-	    background: #4CAF50 !important;
+	    background: #FF5722 !important;
 	    margin-top: 22px;
 	    width: 80%;
 	    margin: 0 auto;
@@ -79,6 +79,119 @@ page-exchange {
 	}
 	form ion-label{
 		font-size: 14px;
+	}
+	.crad-exchange{
+		margin: 0px;
+	    width: calc(100% - 0px);
+	    padding: 10px;
+	    background: #4CAF50;
+	}
+	.crad-exchange .card-title{
+		text-align: center;
+		color: #fff;
+	}
+	.crad-exchange  .border_exchange{
+		width: 30px;
+		height: 30px;
+		border-radius: 50%;
+		border:1px solid #fff;
+		margin: 7px auto;
+	}
+	.crad-exchange .from_currency,.crad-exchange .to_currency{
+	    background: #429a45;
+	    border-radius: 60px;
+	    color: #fff;
+	    width: 120px;
+	    border: none;
+	    float: right;
+        padding-left: 10px;
+	}
+	.crad-exchange .to_currency{
+		float: left;
+	}
+	.crad-exchange .select-icon{
+		display: none;
+	}
+	.crad-exchange .select-icon-inner{
+		display: none;
+	}
+	.crad-exchange ion-select{
+	    max-width: 100%;
+	    font-weight: bold;
+	    font-size: 25px;
+	    padding: 0px;
+	    text-align: center;
+	    width: 100%;
+	}
+	.crad-exchange .icon-exchange ion-icon{
+		font-size: 14px;
+	}
+	.crad-exchange .icon-exchange{
+		width: 100%;
+		float: left;
+		text-align: center;
+		color: #fff;
+		line-height: 10px;
+	}
+	.crad-exchange ion-item{
+		background: none;
+		padding-left: 0px;
+	}
+	.crad-exchange  ion-label{
+	    color: #ffffff !important;
+		font-size: 14px !important;
+	}
+	input[type=number]::-webkit-inner-spin-button, 
+	input[type=number]::-webkit-outer-spin-button { 
+	    -webkit-appearance: none; 
+	    margin: 0; 
+	}
+	input[type=number] {
+	    -moz-appearance:textfield;
+	}
+	.crad-exchange ion-input{
+		color: #fff;
+	}
+	.text-input::-moz-placeholder {
+	  color: white;
+	}
+
+	.text-input:-ms-input-placeholder {
+	  color: white;
+	}
+
+	.text-input::-webkit-input-placeholder {
+	  text-indent: 0;
+	  color: white;
+	}
+	.history .iconstatus{
+		width: 10px;
+		height: 10px;
+		border-radius: 50%;
+		background: #4caf50;
+	    margin-top: 3px;
+	    margin-right: 12px;
+	    float: left;
+	}
+	.history  span{
+	    line-height: 18px;
+	    color: #353535;
+	    font-size: 16px;
+	}
+	
+	.history .amount{
+		font-size: 22px;
+    	font-weight: bold;
+	}
+	.history .date_added{
+		font-size: 14px;
+		color: #8c8888;
+	}
+	.history .txtid{
+		font-size: 13px;
+	    background: #f5f5f5;
+	    padding: 10px;
+	    border-radius: 5px;
 	}
 }
 .alert-wrapper .alert-head{

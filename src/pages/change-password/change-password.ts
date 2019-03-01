@@ -21,7 +21,6 @@ import { RegisterServerProvider } from '../../providers/register-server/register
 export class ChangePasswordPage {
 	form = {};
 	validateform = true;
-	errorlog = '';
 	customer_id : any;
   constructor(public navCtrl: NavController, 
   	public navParams: NavParams,
@@ -34,41 +33,35 @@ export class ChangePasswordPage {
   }
 
 	ionViewDidLoad() {
-		this.validateform = false;
-	console.log('ionViewDidLoad ChangePasswordPage');
+		
 	}
   	goback() {
 		this.navCtrl.setRoot(SettingPage);
 	}
 	SubmitForm() {
-		this.validateform = true;
 		
 		
 		if (this.form['password'] == undefined || this.form['password'] == '')
 		{
-			this.validateform = false;
-			this.errorlog = 'Please enter the old password';
+			this.AlertToast('Please enter the old password');
 		}
 		else
 		{
 			if (this.form['new_password'] == undefined || this.form['new_password'] == '')
 			{
-				this.validateform = false;
-				this.errorlog = 'Please enter the new password';
+				this.AlertToast('Please enter the new password');
 			}
 			else
 			{
 				if (this.form['repeat_password'] == undefined || this.form['repeat_password'] == '')
 				{
-					this.validateform = false;
-					this.errorlog = 'Please enter the repeat password';
+					this.AlertToast('Please enter the repeat password');
 				}
 				else
 				{
 					if (this.form['new_password'] != this.form['repeat_password'])
 					{
-						this.validateform = false;
-						this.errorlog = 'Two passwords do not match';
+						this.AlertToast('Two passwords do not match');
 					}
 					else
 					{
@@ -91,7 +84,7 @@ export class ChangePasswordPage {
 										loading.dismiss();
 										let toast = this.toastCtrl.create({
 											message: data.message,
-											position: 'bottom',
+											position: 'top',
 											duration : 2000,
 											cssClass : 'alert_success'
 										});
@@ -103,8 +96,7 @@ export class ChangePasswordPage {
 									else
 									{
 										loading.dismiss();
-										this.validateform = false;
-										this.errorlog = data.message;
+										this.AlertToast(data.message);
 									}
 						        })
 							}
@@ -121,4 +113,14 @@ export class ChangePasswordPage {
 			}
 		}
 	}
+
+	AlertToast(message) {
+	    let toast = this.toastCtrl.create({
+	      message: message,
+	      position: 'top',
+	      duration : 3000,
+	      cssClass : 'error-submitform'
+	    });
+	    toast.present();
+  	}
 }

@@ -26,6 +26,7 @@ export class WithdrawPage {
 	form = {};
 	customer_id :any;
 	history : any;
+	count_history = 0;
 	
   constructor(
   	public navCtrl: NavController, 
@@ -98,6 +99,7 @@ export class WithdrawPage {
 					{
 						loading.dismiss();
 				  		this.history =  data;
+				  		this.count_history = data.length;
 					}
 					else
 					{

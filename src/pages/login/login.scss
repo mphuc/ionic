@@ -43,6 +43,10 @@ page-login {
       height: 45px;
       border-radius: 50px;
    }
+   .list-md .item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus):last-child, .list-md .item-input.ng-valid.input-has-value:not(.input-has-focus):not(.item-input-has-focus):last-child{
+    border:none !important;
+    box-shadow: none !important;
+   }
    .content-md,.content-ios{
     background: url('../assets/imgs/background.jpeg') center;
     position: relative;
@@ -106,6 +110,18 @@ page-login {
   .list-md .item-block .item-inner{ border: none; }
   .list-md .item-input:last-child{
     border-bottom: none;
+  }
+  .text-input::-moz-placeholder {
+    color: white;
+  }
+
+  .text-input:-ms-input-placeholder {
+    color: white;
+  }
+
+  .text-input::-webkit-input-placeholder {
+    text-indent: 0;
+    color: white;
   }
 }
 .toolbar-title-ios,.bar-button-default-ios{

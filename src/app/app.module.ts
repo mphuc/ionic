@@ -29,6 +29,7 @@ import { ChangePasswordPage } from '../pages/change-password/change-password';
 import { LockPage } from '../pages/lock/lock';
 import { CreatepinPage } from '../pages/createpin/createpin';
 import { DetailWithdrawPage } from '../pages/detail-withdraw/detail-withdraw';
+import { SupportDetailPage } from '../pages/support-detail/support-detail';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -64,7 +65,8 @@ import { Camera, CameraOptions } from '@ionic-native/camera';
     ChangePasswordPage,
     LockPage,
     CreatepinPage,
-    DetailWithdrawPage 
+    DetailWithdrawPage,
+    SupportDetailPage
   ],
   imports: [
     BrowserModule,
@@ -94,7 +96,8 @@ import { Camera, CameraOptions } from '@ionic-native/camera';
     ChangePasswordPage,
     LockPage,
     CreatepinPage,
-    DetailWithdrawPage
+    DetailWithdrawPage,
+    SupportDetailPage
   ],
   providers: [
     StatusBar,

@@ -44,8 +44,9 @@
 			    </div>
 			    <span float-right style="background: #cecece; border-radius: 10px; padding: 5px 10px; color: #4CAF50; font-size: 14px; margin-top: 8px;" (click)="ViewInfomationUser(item.customer_id)">View</span>
 			  </ion-item>
-			  <p text-center  *ngIf="count_history == 0">No data</p>
+			  
 			</ion-list>
+			<p text-center  *ngIf="count_history == 0">No data</p>
 		</ion-card-content>
 		<ion-infinite-scroll (ionInfinite)="doInfinite($event)">
 		   <ion-infinite-scroll-content></ion-infinite-scroll-content>

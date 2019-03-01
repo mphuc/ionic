@@ -119,6 +119,22 @@ page-register {
   .text-error{
     color: #FFEB3B;
   }
+  .text-input::-moz-placeholder {
+    color: white;
+  }
+
+  .text-input:-ms-input-placeholder {
+    color: white;
+  }
+
+  .text-input::-webkit-input-placeholder {
+    text-indent: 0;
+    color: white;
+  }
+  .list-md .item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus):last-child, .list-md .item-input.ng-valid.input-has-value:not(.input-has-focus):not(.item-input-has-focus):last-child{
+    border:none !important;
+    box-shadow: none !important;
+   }
 }
 .successqrcode .toast-bottom{
   background: #4caf50 !important;

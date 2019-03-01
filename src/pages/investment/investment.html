@@ -153,14 +153,15 @@
 		</ion-card-content>
 	</ion-card>
 
-
+	<div class="clear_div"></div>
 	<ion-card>
 		<ion-card-header>
 	        <ion-card-title>History</ion-card-title>
 	    </ion-card-header>
 
 	    <ion-card-content>
-	    	<ion-grid>
+	    	<p text-center  *ngIf="count_history == 0">No data</p>
+	    	<ion-grid *ngIf="count_history > 0">
 		      	<ion-row >
 		          <ion-col col-5 style="border: 1px solid #eee;border-bottom: none; border-right: none;">
 		            <ion-label text-center>Date Create</ion-label>

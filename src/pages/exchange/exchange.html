@@ -94,8 +94,9 @@
 			</ion-grid>	
 	 	</ion-card-content>
 	</ion-card>
+
 	<div class="clear_div"></div>
-	<ion-card>
+	<ion-card class="crad-exchange">
 
 		<ion-card-header>
 	        <ion-card-title>Exchange</ion-card-title>
@@ -103,29 +104,35 @@
 	    <ion-card-content>
 		    <form (ngSubmit)="SubmitForm()">
 			    <ion-row>
-					<ion-col >
-						<ion-item class="border"> 
-						  <ion-label>From</ion-label>
-						  <ion-select [(ngModel)]="form.from_currency" name="from_currency" okText="Confirm" cancelText="Cancel">
-						    <ion-option value="BTC">Bitcoin</ion-option>
-						    <ion-option value="ETH">Ethereum</ion-option>
-						    <ion-option value="LTC">Litecoin</ion-option>
-						    <ion-option value="XRP">Ripple</ion-option>
+					<ion-col col-5>
+						<ion-item class="border from_currency"> 
+						  <ion-label style="display: none;">You Paid</ion-label>
+						  <ion-select [(ngModel)]="form.from_currency" name="from_currency" okText="Confirm" cancelText="Cancel"  (ionChange)="onChangeSelectFrom($event)">
+						    <ion-option  value="BTC">BTC</ion-option>
+						    <ion-option value="ETH">ETH</ion-option>
+						    <ion-option value="LTC">LTC</ion-option>
+						    <ion-option value="XRP">XRP</ion-option>
 						    <ion-option value="USDT">USDT</ion-option>
 						    <ion-option value="STO">STO</ion-option>
 						  </ion-select>
 						</ion-item>
 					</ion-col >
-					<ion-col >
-					 	<ion-item class="border ">
-						  <ion-label>To</ion-label>
-						  <ion-select [(ngModel)]="form.to_currency" name="to_currency" okText="Confirm" cancelText="Cancel">
-						    <ion-option value="BTC">Bitcoin</ion-option>
-						    <ion-option value="ETH">Ethereum</ion-option>
-						    <ion-option value="LTC">Litecoin</ion-option>
-						    <ion-option value="XRP">Ripple</ion-option>
+					<ion-col col-2 text-center>
+						<p class="border_exchange">
+							<span class="icon-exchange"><ion-icon name="arrow-round-forward"></ion-icon></span>
+							<span class="icon-exchange"><ion-icon name="arrow-round-back"></ion-icon></span> 
+						</p>
+					</ion-col>
+					<ion-col col-5>
+					 	<ion-item class="border to_currency">
+						  <ion-label  style="display: none;">You Received</ion-label>
+						  <ion-select [(ngModel)]="form.to_currency" name="to_currency" okText="Confirm" cancelText="Cancel" (ionChange)="onChangeSelectTo($event)">
+						    <ion-option  value="BTC">BTC</ion-option>
+						    <ion-option value="ETH">ETH</ion-option>
+						    <ion-option value="LTC">LTC</ion-option>
+						    <ion-option value="XRP">XRP</ion-option>
 						    <ion-option value="USDT">USDT</ion-option>
-						    <ion-option value="STO">STO</ion-option>
+						    <ion-option value="STO">STO</ion-option>	
 						  </ion-select>
 						</ion-item>
 					</ion-col>
@@ -133,17 +140,17 @@
 
 				</ion-row>
 			    
-				<ion-row>
+				<ion-row style="margin-top: 15px;">
 					<ion-col >
-						<ion-item class="border">
-						    <ion-label >Amount</ion-label>
-						    <ion-input [(ngModel)]="form.amount" name="amount" type="number" text-right placeholder="..." (keyup)='onChangeInput($event.target.value)'></ion-input>
+						<ion-item class="border-bottom">
+						    <ion-label stacked>You Paid</ion-label>
+						    <ion-input [(ngModel)]="form.amount" name="amount" type="number" text-right placeholder="0,0000" (keyup)='onChangeInput($event.target.value)'></ion-input>
 					  	</ion-item>
 					</ion-col>
 					<ion-col>
-					  	<ion-item class="border input-readonly">
-						    <ion-label >Estimate</ion-label>
-						    <ion-input [(ngModel)]="form.amount_estimate" name="amount_estimate" type="number" text-right placeholder="..." readonly="true"></ion-input>
+					  	<ion-item class="border-bottom input-readonly">
+						    <ion-label stacked>You received</ion-label>
+						    <ion-input [(ngModel)]="form.amount_estimate" name="amount_estimate" type="number" text-right placeholder="0,0000" readonly="true"></ion-input>
 					  	</ion-item>
 					</ion-col>
 					
@@ -151,7 +158,7 @@
 
 					
 				</ion-row>
-				<ion-row>
+				<ion-row style="margin-top: 20px;">
 					<ion-col >
 						<button ion-button full  >Confirm Exchange</button>
 						
@@ -166,33 +173,28 @@
 	        <ion-card-title>History</ion-card-title>
 	    </ion-card-header>
 
-	    <ion-card-content>
-	    	<ion-grid>
+	    <ion-card-content class="history">
+	    	<ion-grid *ngFor="let item of history" style="border-bottom: 1px solid #eee;" >
 		      	<ion-row >
-		          <ion-col col-5 style="border: 1px solid #eee;border-bottom: none; border-right: none;">
-		            <ion-label text-center>Date Create</ion-label>
-		          </ion-col>
-		          <ion-col col-4 style="border: 1px solid #eee;border-bottom: none; border-right: none;">
-		            <ion-label text-center>Amount</ion-label>
-		          </ion-col>
-		            <ion-col col-3 style="border: 1px solid #eee;border-bottom: none;">
-		            <ion-label text-center>Curency</ion-label>
-		          </ion-col>
+		          	<ion-col col-5>
+		          		<span float-left><span class="iconstatus "></span>Exchange</span>
+		          	</ion-col>
+		          	<ion-col col-7>
+		          		<span float-right class="date_added">{{item.date_added}}</span>	
+		          		
+		          	</ion-col>
 		        </ion-row>
-		        	
-		        <ion-row style="border:1px solid #eee; font-size: 14px;" *ngFor="let item of history" >
-		          <ion-col col-5 style="border-right: 1px solid #eee;">
-		            <ion-label text-center>{{item.date_added}}</ion-label>
-		          </ion-col>
-		          <ion-col col-4 style="border-right: 1px solid #eee;">
-		            <ion-label text-center>{{item.amount_form}} 
-		            	<ion-icon name="arrow-forward"></ion-icon> {{item.amount_to}} 
-		            </ion-label>
-		          </ion-col>
-		            <ion-col col-3 style="">
-		            <ion-label text-center>{{item.currency_from}} <ion-icon name="arrow-forward"></ion-icon> {{item.currency_to}}</ion-label>
-		          </ion-col>
+		        <ion-row>
+		          	<ion-col col-12>
+		          		<p text-center class="amount">{{item.amount_form}} {{item.currency_from}} - {{item.amount_to}} {{item.currency_to}}</p>
+		          	</ion-col>
+		          	
 		        </ion-row>
+		       
+			</ion-grid>
+
+	    	<ion-grid>
+		      	
 
 		       	<ion-infinite-scroll (ionInfinite)="doInfinite($event)">
 				   <ion-infinite-scroll-content></ion-infinite-scroll-content>

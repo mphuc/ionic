@@ -92,6 +92,42 @@ export class ExchangeServerProvider {
       .catch(this.catchError)
     }
 
+    SupportSubmit(customer_id: string,title : string, content : string){
+      let body = {customer_id: customer_id, title: title,  content: content};
+      return this.http.post(MyConfig.data.url+'/api/exchange/submit-support',body)
+      .do(this.logResponse)
+      .map(this.extractData)
+      .catch(this.catchError)
+    }
+
+
+    SupportSubmitReply(customer_id: string,_id: string, content : string){
+      let body = {customer_id: customer_id, _id: _id, content: content};
+      return this.http.post(MyConfig.data.url+'/api/exchange/submit-support-reply',body)
+      .do(this.logResponse)
+      .map(this.extractData)
+      .catch(this.catchError)
+    }
+    
+
+    GetHisrorySupport(customer_id: string,start : number, limit : number){
+      let body = {customer_id: customer_id, start: start,  limit: limit};
+      return this.http.post(MyConfig.data.url+'/api/exchange/get-history-support',body)
+      .do(this.logResponse)
+      .map(this.extractData)
+      .catch(this.catchError)
+    }
+
+    GetHisrorySupportID(_id: string){
+      let body = {_id: _id};
+      return this.http.post(MyConfig.data.url+'/api/exchange/get-support-id',body)
+      .do(this.logResponse)
+      .map(this.extractData)
+      .catch(this.catchError)
+    }
+    
+    
+
     private catchError(error : Response){
 		//console.log(error);
 		return Observable.throw(error.json().error || "server login error");

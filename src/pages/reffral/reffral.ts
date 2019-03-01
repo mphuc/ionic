@@ -21,7 +21,7 @@ import { ReffralServerProvider } from '../../providers/reffral-server/reffral-se
 export class ReffralPage {
 	customer_id :any;
 	history : any;
-	count_history : any;
+	count_history = 0;
   constructor(
   	public navCtrl: NavController, 
   	public navParams: NavParams,

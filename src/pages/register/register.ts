@@ -23,8 +23,6 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 })
 export class RegisterPage {
 	form = {};
-	validateform = true;
-	errorlog = '';
 	scannedCode : any;
 	customer_sponser = '';
 	constructor(
@@ -52,7 +50,6 @@ export class RegisterPage {
 	  return regex.test(email);
 	}
 	SubmitForm() {
-		this.validateform = true;
 		
 		if (this.validateEmail(this.form['email']))
 		{
@@ -64,8 +61,13 @@ export class RegisterPage {
 			  	});
 
 			  	loading.present();
+			  	let p_node = '';
+			  	if (this.customer_sponser != '')
+			  	{
+			  		p_node = this.customer_sponser;
+			  	}
 
-				this.RegisterServer.Signup(this.form['email'],this.form['password'],this.customer_sponser)
+				this.RegisterServer.Signup(this.form['email'],this.form['password'],p_node)
 		        .subscribe((data) => {
 					if (data.status == 'complete')
 					{
@@ -76,21 +78,19 @@ export class RegisterPage {
 					else
 					{
 						loading.dismiss();
-						this.validateform = false;
-						this.errorlog = data.message;
+						this.AlertToast(data.message);
+						
 					}
 		        })
 			}
 			else
 			{
-				this.validateform = false;
-				this.errorlog = 'The password you entered does not match';
+				this.AlertToast('The password you entered does not match');
 			}
 		}
 		else
 		{
-			this.validateform = false;
-			this.errorlog = 'Your email is not properly formatted';
+			this.AlertToast('Your email is not properly formatted');
 		}
 	}
 
@@ -127,14 +127,23 @@ export class RegisterPage {
 	    });
 	  }
 
-	  noQrcode() {
-	    let toast = this.toastCtrl.create({
+	noQrcode() {
+		let toast = this.toastCtrl.create({
 	      message: 'Error Qrcode',
-	      position: 'bottom',
-	      duration : 2000,
-	      cssClass : 'errorqrcode'
-	      
+	      position: 'top',
+	      duration : 3000,
+	      cssClass : 'error-submitform'
 	    });
 	    toast.present();
-	  }
+	}
+
+	AlertToast(message) {
+	    let toast = this.toastCtrl.create({
+	      message: message,
+	      position: 'top',
+	      duration : 3000,
+	      cssClass : 'error-submitform'
+	    });
+	    toast.present();
+  	}
 }

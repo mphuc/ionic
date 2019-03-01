@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 
 import { LoginPage } from '../login/login';
 import { AlertController } from 'ionic-angular';
@@ -19,14 +19,14 @@ import { RegisterServerProvider } from '../../providers/register-server/register
 })
 export class ForgotPasswordPage {
 	form = {};
-	validateform = true;
-	errorlog = '';
+	
   	constructor(
   		public navCtrl: NavController, 
   		public navParams: NavParams,
   		private alertCtrl: AlertController,
   		public loadingCtrl: LoadingController,
-  		private RegisterServer: RegisterServerProvider
+  		private RegisterServer: RegisterServerProvider,
+  		public toastCtrl: ToastController
   	) {
   	}
 
@@ -40,8 +40,6 @@ export class ForgotPasswordPage {
 
 
   	SubmitForm() {
-		this.validateform = true;
-		
 		
 		if (this.form['email'] != undefined && this.form['email'] != '')
 		{
@@ -72,16 +70,24 @@ export class ForgotPasswordPage {
 				else
 				{
 					loading.dismiss();
-					this.validateform = false;
-					this.errorlog = data.message;
+					this.AlertToast(data.message);
 				}
 	        })
 		}
 		else
 		{
-			this.validateform = false;
-			this.errorlog = 'Invalid email information';
+			this.AlertToast('Invalid email information');
 		}
 		
 	}
+
+	AlertToast(message) {
+	    let toast = this.toastCtrl.create({
+	      message: message,
+	      position: 'top',
+	      duration : 3000,
+	      cssClass : 'error-submitform'
+	    });
+	    toast.present();
+  	}
 }

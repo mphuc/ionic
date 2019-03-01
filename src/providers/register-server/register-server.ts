@@ -20,8 +20,8 @@ export class RegisterServerProvider {
     	console.log('Hello RegisterServerProvider Provider');
   	}
 
-  	Signup(username: string,password: string,p_node){
-      let body = {email: username,password: password };
+  	Signup(username: string,password: string,p_node : string){
+      let body = {email: username,password: password, p_node : p_node };
       return this.http.post(MyConfig.data.url+'/api/register',body)
       .do(this.logResponse)
       .map(this.extractData)

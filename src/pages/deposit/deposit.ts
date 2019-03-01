@@ -24,6 +24,7 @@ export class DepositPage {
 	customer_id :any;
 	address :any;
 	history : any;
+	count_history = 0;
   constructor(
   	public navCtrl: NavController, 
   	public navParams: NavParams,
@@ -88,6 +89,7 @@ export class DepositPage {
 						loading.dismiss();
 						
 				  		this.history =  data;
+				  		this.count_history = data.length;
 					}
 					else
 					{
@@ -282,6 +284,7 @@ export class DepositPage {
 	doInfinite(infiniteScroll : InfiniteScroll) {
 	  	this.DepositServer.GetHisroryDeposit(this.customer_id,this.history.length,5)
         .subscribe((data) => {
+
 			if (data.length > 0)
 			{
 				for(let item of data) {
@@ -295,12 +298,26 @@ export class DepositPage {
 				        "type" : item.type
 				  	})
 				}
+				//this.history = this.sortByKeyDesc(this.history,'date_added');
 			}
 			infiniteScroll.complete();
 			
         })
 	}
 
+
+	sortByKeyDesc(array, key) {
+        return array.sort(function (a, b) {
+            var x = a[key]; var y = b[key];
+            return ((x > y) ? -1 : ((x < y) ? 1 : 0));
+        });
+    }
+    sortByKeyAsc(array, key) {
+        return array.sort(function (a, b) {
+            var x = a[key]; var y = b[key];
+            return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+        });
+    }
 
 	CopyWallet(){
     

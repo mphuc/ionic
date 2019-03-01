@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { NgForm } from '@angular/forms';
 
 import { RegisterServerProvider } from '../../providers/register-server/register-server';
-import { LoadingController } from 'ionic-angular';
+import { LoadingController,ToastController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { HomePage } from '../home/home';
 import { RegisterPage } from '../register/register';
@@ -22,14 +22,13 @@ import { ForgotPasswordPage } from '../forgot-password/forgot-password';
 })
 export class LoginPage {
 	form = {};
-	validateform = true;
-	errorlog = '';
 	constructor(
 		public navCtrl: NavController, 
 		public navParams: NavParams,
 		public loadingCtrl: LoadingController,
 		private RegisterServer: RegisterServerProvider,
-		public storage: Storage
+		public storage: Storage,
+		public toastCtrl: ToastController
 
 		) {
 	}
@@ -47,39 +46,59 @@ export class LoginPage {
 	}
 
 	SubmitForm() {
-		this.validateform = true;
 		
 		
-		if (this.form['email'] != undefined && this.form['email'] != '' && this.form['password'] != undefined && this.form['password'] != '')
+		if (this.form['email'] == undefined || this.form['email'] == '')
 		{
-			
-			let loading = this.loadingCtrl.create({
-			    content: 'Please wait...'
-		  	});
-
-		  	loading.present();
-
-			this.RegisterServer.Login(this.form['email'],this.form['password'])
-	        .subscribe((data) => {
-				if (data.status == 'complete')
-				{
-					loading.dismiss();
-					this.storage.set('customer_id', data.customer_id); 
-					this.navCtrl.setRoot(HomePage);
-				}
-				else
-				{
-					loading.dismiss();
-					this.validateform = false;
-					this.errorlog = data.message;
-				}
-	        })
+			this.AlertToast('Please enter your login email');
 		}
 		else
 		{
-			this.validateform = false;
-			this.errorlog = 'Invalid login information';
+			if (this.form['password'] == undefined || this.form['password'] == '')
+			{
+				this.AlertToast('Please enter your login password');
+			}
+			else
+			{	
+				let loading = this.loadingCtrl.create({
+				    content: 'Please wait...'
+			  	});
+
+			  	loading.present();
+
+				this.RegisterServer.Login(this.form['email'],this.form['password'])
+		        .subscribe((data) => {
+					if (data.status == 'complete')
+					{
+						loading.dismiss();
+						this.storage.set('customer_id', data.customer_id); 
+
+						let toast = this.toastCtrl.create({
+							message: 'Logged in successfully',
+							position: 'top',
+							duration : 2000,
+							cssClass : 'alert_success'
+						});
+						toast.present();
+
+						this.navCtrl.setRoot(HomePage);
+					}
+					else
+					{
+						loading.dismiss();
+						this.AlertToast(data.message);
+					}
+		        })
+			}
 		}
-		
 	}
+	AlertToast(message) {
+	    let toast = this.toastCtrl.create({
+	      message: message,
+	      position: 'top',
+	      duration : 3000,
+	      cssClass : 'error-submitform'
+	    });
+	    toast.present();
+  	}
 }
