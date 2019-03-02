@@ -41,8 +41,9 @@ import { DepositServerProvider } from '../providers/deposit-server/deposit-serve
 import { WithdrawServerProvider } from '../providers/withdraw-server/withdraw-server';
 import { ExchangeServerProvider } from '../providers/exchange-server/exchange-server';
 import { ReffralServerProvider } from '../providers/reffral-server/reffral-server';
-import { Camera, CameraOptions } from '@ionic-native/camera';
-
+import { Camera } from '@ionic-native/camera';
+import { HeaderColor } from '@ionic-native/header-color';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 @NgModule({
   declarations: [
     MyApp,
@@ -111,7 +112,9 @@ import { Camera, CameraOptions } from '@ionic-native/camera';
     ExchangeServerProvider,
     ReffralServerProvider,
     BarcodeScanner,
-    Camera
+    Camera,
+    HeaderColor,
+    InAppBrowser
     
   ]
 })

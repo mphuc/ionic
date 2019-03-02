@@ -24,7 +24,7 @@
     left: 0;
     top: 0;
     content: '';
-    background: #2196F3;
+    background: #4CAF50;
 }
 .profile_menu p{
     color: #fff;
@@ -55,4 +55,37 @@
 }
 .card-title{  
       font-size: 18px !important;
+}
+ button.item-ios:not([detail-none]) .item-inner{
+  background: none;
+ }
+
+ .label-ios {
+   
+    font-size: 16px;
+}
+.back-button-icon-ios {
+    margin: -1px 0 0;
+    display: inherit;
+    min-width: 18px;
+    font-size: 20px;
+    font-weight: 400;
+    padding: 0 10px;
+}
+.back-button-icon-md {
+    margin: 0;
+    padding: 0 0px;
+    text-align: left;
+    text-align: start;
+    font-size: 22px;
+    font-weight: normal;
+    
+}
+.toolbar-title-md {
+    
+  font-size: 18px;
+    
+}
+.back-button-md{
+  min-width: 0px;
 }

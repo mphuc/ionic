@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams , ToastController} from 'ionic-angular';
+import { IonicPage, NavController, NavParams , ToastController,AlertController,Platform} from 'ionic-angular';
 import { SettingPage } from '../setting/setting';
 import { LoginPage } from '../login/login';
-import { AlertController } from 'ionic-angular';
+
 import { LoadingController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { RegisterServerProvider } from '../../providers/register-server/register-server';
@@ -24,11 +24,13 @@ export class ChangePasswordPage {
 	customer_id : any;
   constructor(public navCtrl: NavController, 
   	public navParams: NavParams,
-  	private alertCtrl: AlertController,
+  	
 	public loadingCtrl: LoadingController,
 	public storage: Storage,
 	private RegisterServer: RegisterServerProvider,
 	public toastCtrl: ToastController,
+	public platform: Platform,
+	public alertCtrl: AlertController,
   	) {
   }
 
@@ -98,10 +100,18 @@ export class ChangePasswordPage {
 										loading.dismiss();
 										this.AlertToast(data.message);
 									}
+						        },
+						        (err) => {
+						        	if (err)
+						        	{
+						        		loading.dismiss();
+						        		this.SeverNotLogin();
+						        	}
 						        })
 							}
 							else
 							{
+								
 								this.navCtrl.setRoot(LoginPage);
 							}
 							
@@ -122,5 +132,26 @@ export class ChangePasswordPage {
 	      cssClass : 'error-submitform'
 	    });
 	    toast.present();
+  	}
+  	SeverNotLogin(){
+  		const confirm = this.alertCtrl.create({
+		title: 'System maintenance',
+		message: 'The system is updating. Please come back after a few minutes',
+		buttons: [
+		{
+		  text: 'Cancel',
+		  handler: () => {
+		    
+		  }
+		},
+		{
+		  text: 'Exit',
+		  handler: () => {
+		   	this.platform.exitApp();
+		  }
+		}
+		]
+		});
+		confirm.present();
   	}
 }

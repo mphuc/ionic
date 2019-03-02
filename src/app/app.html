@@ -2,21 +2,26 @@
   <ion-header>
     <ion-toolbar>
       <div class="profile_menu text-center">
-        <img src="/assets/imgs/user.png" class="slide-image"/>
-        <p>asdasdasdas@gmail.com</p>
+        <img src="{{infomation.img_profile}}" class="slide-image"/>
+        <p>{{infomation.email}}</p>
       </div>
     </ion-toolbar>
     
   </ion-header>
 
   <ion-content>
+    
     <ion-list>
       <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
         <ion-icon [name]="p.icon" item-start></ion-icon>
         {{p.title}}
        
       </button>
-
+      <button menuClose ion-item (click)="Logout_Click()">
+        <ion-icon  name="power" item-start></ion-icon>
+        Logout
+       
+      </button>
     </ion-list>
 
 

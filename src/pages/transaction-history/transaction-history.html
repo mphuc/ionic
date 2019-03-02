@@ -19,19 +19,19 @@
 	    <ion-card-content class="history">
 	    	<ion-grid *ngFor="let item of history" style="border-bottom: 1px solid #eee;" >
 		      	<ion-row >
-		          	<ion-col col-5>
+		          	<ion-col col-6>
 		          		<span float-left><span class="iconstatus " [ngClass]="{'finish_withdraw': item.status === 1}"></span> {{item.type}}</span>
 		          	</ion-col>
-		          	<ion-col col-7>
+		          	<ion-col col-6>
 		          			<span float-right class="amount">+{{item.amount}}  {{item.currency}} </span>
 		          		
 		          	</ion-col>
 		        </ion-row>
 		        <ion-row>
-		          	<ion-col col-5>
+		          	<ion-col col-7>
 		          		<span float-left class="date_added">{{item.date_added}}</span>
 		          	</ion-col>
-		          	<ion-col col-7>
+		          	<ion-col col-5>
 	          			
 	          			<span float-right >Finish</span>
 		          	</ion-col>
@@ -43,7 +43,7 @@
 	    	<ion-grid>
 		      	
 
-		       	<ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+		       	<ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="count_history > 0">
 				   <ion-infinite-scroll-content></ion-infinite-scroll-content>
 				 </ion-infinite-scroll>
 			</ion-grid>

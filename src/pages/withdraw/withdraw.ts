@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,InfiniteScroll,ToastController ,AlertController} from 'ionic-angular';
+import { IonicPage, NavController, NavParams,InfiniteScroll,ToastController ,AlertController,Platform} from 'ionic-angular';
 import { LoginPage } from '../login/login';
 import { HomePage } from '../home/home';
 import { Storage } from '@ionic/storage';
@@ -37,13 +37,14 @@ export class WithdrawPage {
 	public loadingCtrl: LoadingController,
 	public toastCtrl: ToastController,
 	public alertCtrl: AlertController,
-  	public WithdrawServer : WithdrawServerProvider
+  	public WithdrawServer : WithdrawServerProvider,
+  	public platform: Platform,
   	
   	) {
   }
 
   	ionViewDidLoad() {
-
+  		this.form['currency'] = 'BTC';
   		this.storage.get('customer_id')
 		.then((customer_id) => {
 			if (customer_id) 
@@ -154,7 +155,7 @@ export class WithdrawPage {
 					price_altcoin = this.price_coin['coin_usd'];
 				}
 
-				let amount_estimate = price_altcoin* parseFloat(value);
+				let amount_estimate = (price_altcoin* parseFloat(value)).toFixed(8);
 				
 				this.form['amount_estimate'] = amount_estimate;
 				
@@ -190,7 +191,7 @@ export class WithdrawPage {
 			{
 				price_altcoin = this.price_coin['coin_usd'];
 			}
-			let amount_estimate = price_altcoin* parseFloat(this.form['amount']);
+			let amount_estimate = (price_altcoin* parseFloat(this.form['amount'])).toFixed(8);
 				
 			this.form['amount_estimate'] = amount_estimate;
 		}
@@ -321,6 +322,13 @@ export class WithdrawPage {
 										
 						          		loadingss.dismiss();
 						          	}
+						        },
+						        (err) => {
+						        	if (err)
+						        	{
+						        		loadingss.dismiss();
+						        		this.SeverNotLogin();
+						        	}
 						        })
 
 					          	
@@ -349,5 +357,27 @@ export class WithdrawPage {
 	      cssClass : 'error-submitform'
 	    });
 	    toast.present();
+  	}
+
+  	SeverNotLogin(){
+  		const confirm = this.alertCtrl.create({
+		title: 'System maintenance',
+		message: 'The system is updating. Please come back after a few minutes',
+		buttons: [
+		{
+		  text: 'Cancel',
+		  handler: () => {
+		    
+		  }
+		},
+		{
+		  text: 'Exit',
+		  handler: () => {
+		   	this.platform.exitApp();
+		  }
+		}
+		]
+		});
+		confirm.present();
   	}
 }

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,InfiniteScroll,ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,InfiniteScroll,ToastController ,Platform ,AlertController} from 'ionic-angular';
 import { HomePage } from '../home/home';
 import { LoginPage } from '../login/login';
 import { Storage } from '@ionic/storage';
@@ -32,7 +32,9 @@ export class DepositPage {
   	public storage: Storage,
   	public loadingCtrl: LoadingController,
   	private clipboard: Clipboard,
-  	public toastCtrl: ToastController
+  	public toastCtrl: ToastController,
+  	public platform: Platform,
+	public alertCtrl: AlertController,
   	) {
   }
 
@@ -131,6 +133,13 @@ export class DepositPage {
 				{
 					loading.dismiss();
 				}
+	        },
+	        (err) => {
+	        	if (err)
+	        	{
+	        		loading.dismiss();
+	        		this.SeverNotLogin();
+	        	}
 	        })
   		}
 	  		
@@ -160,6 +169,13 @@ export class DepositPage {
 				{
 					loading.dismiss();
 				}
+	        },
+	        (err) => {
+	        	if (err)
+	        	{
+	        		loading.dismiss();
+	        		this.SeverNotLogin();
+	        	}
 	        })
 	    }
   	}
@@ -188,6 +204,13 @@ export class DepositPage {
 				{
 					loading.dismiss();
 				}
+	        },
+	        (err) => {
+	        	if (err)
+	        	{
+	        		loading.dismiss();
+	        		this.SeverNotLogin();
+	        	}
 	        })
 	    }
   	}
@@ -216,6 +239,13 @@ export class DepositPage {
 				{
 					loading.dismiss();
 				}
+	        },
+	        (err) => {
+	        	if (err)
+	        	{
+	        		loading.dismiss();
+	        		this.SeverNotLogin();
+	        	}
 	        })
 	    }
   	}
@@ -244,6 +274,13 @@ export class DepositPage {
 				{
 					loading.dismiss();
 				}
+	        },
+	        (err) => {
+	        	if (err)
+	        	{
+	        		loading.dismiss();
+	        		this.SeverNotLogin();
+	        	}
 	        })
 	    }
   	}
@@ -272,6 +309,13 @@ export class DepositPage {
 				{
 					loading.dismiss();
 				}
+	        },
+	        (err) => {
+	        	if (err)
+	        	{
+	        		loading.dismiss();
+	        		this.SeverNotLogin();
+	        	}
 	        })
 	    }
   	}
@@ -340,4 +384,25 @@ export class DepositPage {
 	);
 	//this.presentToast();
 	}
+	SeverNotLogin(){
+  		const confirm = this.alertCtrl.create({
+		title: 'System maintenance',
+		message: 'The system is updating. Please come back after a few minutes',
+		buttons: [
+		{
+		  text: 'Cancel',
+		  handler: () => {
+		    
+		  }
+		},
+		{
+		  text: 'Exit',
+		  handler: () => {
+		   	this.platform.exitApp();
+		  }
+		}
+		]
+		});
+		confirm.present();
+  	}
 }

@@ -58,10 +58,11 @@ page-withdraw {
 	}
 	.button-default  {
 	    padding: 19px !important;
-	    background: #4CAF50 !important;
-	    margin-top: 22px;
+	    background: #FF5722 !important;
+	    
 	    width: 80%;
-	    margin: 0 auto;
+	    margin: 20px auto;
+	    margin-bottom: 10px;
 	    border-radius: 20px;
 	}
 	.text-error{
@@ -113,10 +114,106 @@ page-withdraw {
 	    padding: 10px;
 	    border-radius: 5px;
 	}
+	.history .status{
+		font-size: 14px;
+		color: #383737
+	}
 	.finish_withdraw{
 		background: #4caf50 !important;
 	}
 
+	.crad-exchange{
+		margin: 0px;
+	    width: calc(100% - 0px);
+	    padding: 10px;
+	    background: #4CAF50;
+	}
+	.crad-exchange .card-title{
+		text-align: center;
+		color: #fff;
+	}
+	.crad-exchange  .border_exchange{
+		width: 30px;
+		height: 30px;
+		border-radius: 50%;
+		border:1px solid #fff;
+		margin: 7px auto;
+	}
+	.crad-exchange .from_currency,.crad-exchange .to_currency{
+	    background: #429a45;
+	    border-radius: 60px;
+	    color: #fff;
+	    width: 120px;
+	    border: none;
+	    float: right;
+        padding-left: 10px;
+	}
+	.crad-exchange .to_currency{
+		float: left;
+	}
+	.crad-exchange .select-icon{
+		display: none;
+	}
+	.crad-exchange .select-icon-inner{
+		display: none;
+	}
+	.crad-exchange ion-select{
+	    max-width: 100%;
+	    
+	    font-size: 16px;
+	    padding: 0px;
+	    text-align: center;
+	    width: 100%;
+	    color: #fff;
+	}
+	.crad-exchange .icon-exchange ion-icon{
+		font-size: 14px;
+	}
+	.crad-exchange .icon-exchange .icon-ios{
+		    font-weight: bold;
+	}
+	.crad-exchange .icon-exchange{
+		width: 100%;
+		float: left;
+		text-align: center;
+		color: #fff;
+		line-height: 10px;
+	}
+	.crad-exchange ion-item{
+		background: none;
+		padding-left: 0px;
+	}
+	.crad-exchange  ion-label{
+	    color: #ffffff !important;
+		font-size: 14px !important;
+	}
+	input[type=number]::-webkit-inner-spin-button, 
+	input[type=number]::-webkit-outer-spin-button { 
+	    -webkit-appearance: none; 
+	    margin: 0; 
+	}
+	input[type=number] {
+	    -moz-appearance:textfield;
+	}
+	.crad-exchange ion-input{
+		color: #fff;
+	}
+	.text-input::-moz-placeholder {
+	  color: white;
+	}
+
+	.text-input:-ms-input-placeholder {
+	  color: white;
+	}
+
+	.text-input::-webkit-input-placeholder {
+	  text-indent: 0;
+	  color: white;
+	}
+	.amount_estimate .text-input,.amount_estimate .text-input::-moz-placeholder,.amount_estimate .text-input:-ms-input-placeholder,.amount_estimate .text-input::-webkit-input-placeholder{
+		color: #cecdcd !important;
+		display: none;
+	}
 }
 .input-readonly{
 	background: #f1f1f1;
@@ -136,4 +233,57 @@ page-withdraw {
     height: 10px;
     float: left;
     width: 100%;
+}
+input, textarea {
+    -webkit-user-select: auto !important;
+    -khtml-user-select: auto !important;
+    -moz-user-select: auto !important;
+    -ms-user-select: auto !important;
+    -o-user-select: auto !important;
+    user-select: auto !important;
+}
+.card-title-ios {
+    color: #3c3b3b;
+    margin: 2px 0;
+    font-weight: 400;
+}
+.alert-md .alert-wrapper{
+	border-radius: 10px;
+}
+.alert-wrapper .alert-head {
+    border-radius: 10px 10px 0 0;
+}
+.alert-ios .alert-message:empty{
+	padding: 0px;
+}
+.alert-md .alert-button{
+	margin: 0px;
+	width: 50%;
+	text-align: center;
+	text-transform: capitalize;
+    font-weight: 400;
+    font-size: 16px;
+}
+.alert-md .alert-button .button-inner{
+	text-align: center;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	justify-content: center;
+}
+.alert-wrapper .alert-head .alert-title{
+	text-align: center;
+}
+.alert-md .alert-button:first-child{
+	border-right: 1px solid #e0e0e0;
+}
+.loading-md .loading-wrapper{
+	border-radius: 10px;
+}
+.loading-md .loading-spinner + .loading-content {
+    margin-left: 16px;
+    font-weight: bold;
+    color: #292929;
+}
+.back-button-icon-md{
+	font-size: 21px;
 }

@@ -135,5 +135,10 @@ page-support {
 		border: none !important;
 		box-shadow: none !important;
 	}
-	
+	ion-grid.grid:last-child{
+		border-bottom: none !important;
+	}
+	.list-ios > .item-block:last-child, .list-ios > .item-wrapper:last-child .item-block{
+		border: none;
+	}
 }

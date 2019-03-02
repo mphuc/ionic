@@ -37,6 +37,7 @@ export class InvestmentPage {
   }
 
 	ionViewDidLoad() {
+		this.form['currency'] = 'BTC';
 		this.storage.get('customer_id')
 		.then((customer_id) => {
 			if (customer_id) 

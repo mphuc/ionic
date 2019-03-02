@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { NgForm } from '@angular/forms';
+import { IonicPage, NavController, NavParams,Platform ,AlertController} from 'ionic-angular';
 
 import { RegisterServerProvider } from '../../providers/register-server/register-server';
 import { LoadingController,ToastController } from 'ionic-angular';
@@ -28,7 +27,9 @@ export class LoginPage {
 		public loadingCtrl: LoadingController,
 		private RegisterServer: RegisterServerProvider,
 		public storage: Storage,
-		public toastCtrl: ToastController
+		public toastCtrl: ToastController,
+		public platform: Platform,
+		public alertCtrl: AlertController,
 
 		) {
 	}
@@ -67,7 +68,9 @@ export class LoginPage {
 			  	loading.present();
 
 				this.RegisterServer.Login(this.form['email'],this.form['password'])
+
 		        .subscribe((data) => {
+		        	
 					if (data.status == 'complete')
 					{
 						loading.dismiss();
@@ -88,6 +91,13 @@ export class LoginPage {
 						loading.dismiss();
 						this.AlertToast(data.message);
 					}
+		        },
+		        (err) => {
+		        	if (err)
+		        	{
+		        		loading.dismiss();
+		        		this.SeverNotLogin();
+		        	}
 		        })
 			}
 		}
@@ -100,5 +110,27 @@ export class LoginPage {
 	      cssClass : 'error-submitform'
 	    });
 	    toast.present();
+  	}
+
+  	SeverNotLogin(){
+  		const confirm = this.alertCtrl.create({
+		title: 'System maintenance',
+		message: 'The system is updating. Please come back after a few minutes',
+		buttons: [
+		{
+		  text: 'Cancel',
+		  handler: () => {
+		    
+		  }
+		},
+		{
+		  text: 'Exit',
+		  handler: () => {
+		   	this.platform.exitApp();
+		  }
+		}
+		]
+		});
+		confirm.present();
   	}
 }

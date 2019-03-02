@@ -54,15 +54,15 @@
 		          		<span float-left><span class="iconstatus " [ngClass]="{'finish_withdraw': item.status === 1}"></span> {{item.subject}} </span>
 		          	</ion-col>
 		          	<ion-col col-3>
-		          		<span float-right text-center style="background: #cecece; border-radius: 10px; padding: 5px 10px; color: #4CAF50; font-size: 14px; margin-top: 3px;" (click)="ViewDetailSupport(item._id)">View</span>
+		          		<span float-right text-center style=" border-radius: 10px; padding: 5px 10px; color: #4CAF50; font-size: 14px; margin-top: 3px;" (click)="ViewDetailSupport(item._id)">View</span>
 		          	</ion-col>
 		          	
 		        </ion-row>
 		        <ion-row>
-		          	<ion-col col-5>
+		          	<ion-col col-7>
 		          		<span float-left class="date_added">{{item.date_added}}</span>
 		          	</ion-col>
-		          	<ion-col col-7>
+		          	<ion-col col-5>
 	          			<span style="color: #7d7b7b; font-size: 14px;" float-right *ngIf="item.status == 0">Not answered</span>
 	          			<span style="color: #7d7b7b; font-size: 14px;" float-right *ngIf="item.status == 1">Answered</span>
 		          	</ion-col>

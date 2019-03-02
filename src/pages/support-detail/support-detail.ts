@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,InfiniteScroll,ToastController ,AlertController} from 'ionic-angular';
+import { IonicPage, NavController, NavParams,ToastController ,AlertController,Platform} from 'ionic-angular';
 import { LoginPage } from '../login/login';
-import { HomePage } from '../home/home';
+
 import { Storage } from '@ionic/storage';
 import { LoadingController } from 'ionic-angular';
 import { ExchangeServerProvider } from '../../providers/exchange-server/exchange-server';
@@ -31,7 +31,8 @@ export class SupportDetailPage {
 	public loadingCtrl: LoadingController,
 	public toastCtrl: ToastController,
 	public alertCtrl: AlertController,
-	public DepositServer : DepositServerProvider
+	public DepositServer : DepositServerProvider,
+	public platform: Platform,
   	) {
   }
 
@@ -120,11 +121,40 @@ export class SupportDetailPage {
 					
 	          		loadingss.dismiss();
 	          	}
+	        },
+	        (err) => {
+	        	if (err)
+	        	{
+	        		loadingss.dismiss();
+	        		this.SeverNotLogin();
+	        	}
 	        })
 				
 		}
 		
 	}
+
+	SeverNotLogin(){
+  		const confirm = this.alertCtrl.create({
+		title: 'System maintenance',
+		message: 'The system is updating. Please come back after a few minutes',
+		buttons: [
+		{
+		  text: 'Cancel',
+		  handler: () => {
+		    
+		  }
+		},
+		{
+		  text: 'Exit',
+		  handler: () => {
+		   	this.platform.exitApp();
+		  }
+		}
+		]
+		});
+		confirm.present();
+  	}
 
 	AlertToast(message) {
 	    let toast = this.toastCtrl.create({

@@ -42,6 +42,14 @@ export class ReffralServerProvider {
       .catch(this.catchError)
     }
 
+    GetVersionApp(){
+      let body = {};
+      return this.http.post(MyConfig.data.url+'/api/get-version-app',body)
+      .do(this.logResponse)
+      .map(this.extractData)
+      .catch(this.catchError)
+    }
+
     private catchError(error : Response){
 		//console.log(error);
 		return Observable.throw(error.json().error || "server login error");

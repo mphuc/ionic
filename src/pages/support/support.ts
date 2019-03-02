@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,InfiniteScroll,ToastController ,AlertController} from 'ionic-angular';
+import { IonicPage, NavController, NavParams,InfiniteScroll,ToastController ,AlertController,Platform} from 'ionic-angular';
 import { LoginPage } from '../login/login';
 import { HomePage } from '../home/home';
 import { SupportDetailPage } from '../support-detail/support-detail';
@@ -31,7 +31,9 @@ export class SupportPage {
 	public storage: Storage,
 	public loadingCtrl: LoadingController,
 	public toastCtrl: ToastController,
-	public alertCtrl: AlertController
+	public alertCtrl: AlertController,
+	public platform: Platform,
+		
   	
   	) {
   }
@@ -119,6 +121,13 @@ export class SupportPage {
 						
 		          		loadingss.dismiss();
 		          	}
+		        },
+		        (err) => {
+		        	if (err)
+		        	{
+		        		loadingss.dismiss();
+		        		this.SeverNotLogin();
+		        	}
 		        })
 					
 			}
@@ -148,6 +157,28 @@ export class SupportPage {
         })
 	}
 
+	SeverNotLogin(){
+  		const confirm = this.alertCtrl.create({
+		title: 'System maintenance',
+		message: 'The system is updating. Please come back after a few minutes',
+		buttons: [
+		{
+		  text: 'Cancel',
+		  handler: () => {
+		    
+		  }
+		},
+		{
+		  text: 'Exit',
+		  handler: () => {
+		   	this.platform.exitApp();
+		  }
+		}
+		]
+		});
+		confirm.present();
+  	}
+	
 	doInfinite(infiniteScroll : InfiniteScroll) {
 	  	this.ExchangeServer.GetHisrorySupport(this.customer_id,this.history.length,5)
         .subscribe((data) => {

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,InfiniteScroll,ToastController ,AlertController} from 'ionic-angular';
+import { NavController, NavParams,ToastController ,AlertController} from 'ionic-angular';
 import { LoginPage } from '../login/login';
 
 import { Storage } from '@ionic/storage';
@@ -7,7 +7,7 @@ import { LoadingController } from 'ionic-angular';
 import { DepositServerProvider } from '../../providers/deposit-server/deposit-server';
 import { ExchangeServerProvider } from '../../providers/exchange-server/exchange-server';
 import { NotificationPage } from '../notification/notification';
-
+import { HeaderColor } from '@ionic-native/header-color';
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -24,12 +24,14 @@ export class HomePage {
 	public storage: Storage,
 	public loadingCtrl: LoadingController,
 	public toastCtrl: ToastController,
-	public alertCtrl: AlertController
+	public alertCtrl: AlertController,
+	private headerColor: HeaderColor
   	) {
 
   }
 
   ionViewDidLoad() {
+  		this.headerColor.tint('#becb29');
 		this.storage.get('customer_id')
 		.then((customer_id) => {
 			if (customer_id) 
@@ -95,5 +97,7 @@ export class HomePage {
 	goNotificationPage() {
 		this.navCtrl.push(NotificationPage);
 	}
+
+	
 
 }

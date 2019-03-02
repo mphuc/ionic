@@ -147,12 +147,12 @@
 		       	
 			</ion-grid>
 			<p text-center  *ngIf="count_history == 0">No data</p>
-	      	<ion-grid>
+	      	
 		      	
-		       	<ion-infinite-scroll (ionInfinite)="doInfinite($event)">
-				   <ion-infinite-scroll-content></ion-infinite-scroll-content>
-				 </ion-infinite-scroll>
-			</ion-grid>
+	       	<ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="count_history > 0">
+			   <ion-infinite-scroll-content></ion-infinite-scroll-content>
+			 </ion-infinite-scroll>
+			
 	    </ion-card-content>
 
 	</ion-card>

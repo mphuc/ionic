@@ -65,19 +65,21 @@
 	        <ion-card-title>List member</ion-card-title>
 	    </ion-card-header>
 	    <ion-card-content style="padding: 5px;">
-			<ion-list *ngFor="let item of history">
-			  <ion-item style="border-bottom: 1px solid #eee" [ngClass]="{'none-active-email': item.active_email === 0}" (click)="ViewInfomationUser(item.customer_id)">
-			    <ion-avatar item-start>
-			      <img src="{{item.img_profile}}">
-			    </ion-avatar>
-			    <h2>{{item.email}}</h2>
-			    <h3>{{item.date_added}}</h3>
-			    
-			  </ion-item>
+	    	<ion-list>
+		    	<ion-item *ngFor="let item of history" style="border-bottom: 1px solid #eee;" [ngClass]="{'none-active- email': item.active_email === 0}">
+				    <ion-avatar item-start>
+				      <img src="{{item.img_profile}}">
+				    </ion-avatar>
+				    <h2>{{item.email}}</h2>
+				    <p style="color: #6d6c6c; font-size: 13px; margin-top: 5px">{{item.date_added}}</p>
+				    <button ion-button clear item-end (click)="ViewInfomationUser(item.customer_id)">View</button>
+				  </ion-item>
 			</ion-list>
+
+			
 			<p text-center  *ngIf="count_history == 0">No data</p>
 		</ion-card-content>
-		<ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+		<ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="count_history > 0">
 		   <ion-infinite-scroll-content></ion-infinite-scroll-content>
 		 </ion-infinite-scroll>
 		

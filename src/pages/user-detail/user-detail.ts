@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams,InfiniteScroll } from 'ionic-angular';
-import { LoginPage } from '../login/login';
+
 import { HomePage } from '../home/home';
 import { ReffralPage } from '../reffral/reffral';
 import { Storage } from '@ionic/storage';

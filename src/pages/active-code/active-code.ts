@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,ToastController} from 'ionic-angular';
+import { IonicPage, NavController, NavParams,ToastController,Platform  } from 'ionic-angular';
 import { LoadingController } from 'ionic-angular';
 import { RegisterServerProvider } from '../../providers/register-server/register-server';
 import { AlertController } from 'ionic-angular';
-import { LoginPage } from '../login/login';
+
 import { HomePage } from '../home/home';
 import { Storage } from '@ionic/storage';
 /**
@@ -30,7 +30,8 @@ export class ActiveCodePage {
 		private alertCtrl: AlertController,
 		public toastCtrl: ToastController,
 		public storage: Storage,
-
+		public platform: Platform,
+		
 	) {
 
 	}
@@ -79,6 +80,13 @@ export class ActiveCodePage {
 					loading.dismiss();
 					this.AlertToast(data.message);
 				}
+	        },
+	        (err) => {
+	        	if (err)
+	        	{
+	        		loading.dismiss();
+	        		this.SeverNotLogin();
+	        	}
 	        })
 		}
 		else
@@ -109,6 +117,13 @@ export class ActiveCodePage {
 				this.validateform = false;
 				this.errorlog = 'Error Network';
 			}
+        },
+        (err) => {
+        	if (err)
+        	{
+        		loading.dismiss();
+        		this.SeverNotLogin();
+        	}
         })
 	}
 
@@ -120,5 +135,26 @@ export class ActiveCodePage {
 	      cssClass : 'error-submitform'
 	    });
 	    toast.present();
+  	}
+  	SeverNotLogin(){
+  		const confirm = this.alertCtrl.create({
+		title: 'System maintenance',
+		message: 'The system is updating. Please come back after a few minutes',
+		buttons: [
+		{
+		  text: 'Cancel',
+		  handler: () => {
+		    
+		  }
+		},
+		{
+		  text: 'Exit',
+		  handler: () => {
+		   	this.platform.exitApp();
+		  }
+		}
+		]
+		});
+		confirm.present();
   	}
 }

@@ -186,14 +186,14 @@
 		        </ion-row>
 		        <ion-row>
 		          	<ion-col col-12>
-		          		<p text-center class="amount">{{item.amount_form}} {{item.currency_from}} - {{item.amount_to}} {{item.currency_to}}</p>
+		          		<p text-center class="amount">{{item.amount_form}} {{item.currency_from}} <ion-icon style="font-size: 20px; font-weight: 500; margin: 0px 10px;" name="arrow-round-forward"></ion-icon> {{item.amount_to}} {{item.currency_to}}</p>
 		          	</ion-col>
 		          	
 		        </ion-row>
 		       
 			</ion-grid>
-
-	    	<ion-grid>
+			<p text-center  *ngIf="count_history == 0">No data</p>
+	    	<ion-grid *ngIf="count_history > 0">
 		      	
 
 		       	<ion-infinite-scroll (ionInfinite)="doInfinite($event)">

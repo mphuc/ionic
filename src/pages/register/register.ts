@@ -1,10 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,ToastController } from 'ionic-angular';
-
-import { NgForm } from '@angular/forms';
-
+import { IonicPage, NavController, NavParams,ToastController,Platform ,AlertController } from 'ionic-angular';
 import { RegisterServerProvider } from '../../providers/register-server/register-server';
-
 import { LoginPage } from '../login/login';
 import { ActiveCodePage } from '../active-code/active-code';
 import { LoadingController } from 'ionic-angular';
@@ -32,6 +28,8 @@ export class RegisterPage {
 		private RegisterServer: RegisterServerProvider,
 		private barcodeScanner: BarcodeScanner,
 		public toastCtrl: ToastController,
+		public platform: Platform,
+		public alertCtrl: AlertController,
 	) 
 	{
 
@@ -81,6 +79,13 @@ export class RegisterPage {
 						this.AlertToast(data.message);
 						
 					}
+		        },
+		        (err) => {
+		        	if (err)
+		        	{
+		        		loading.dismiss();
+		        		this.SeverNotLogin();
+		        	}
 		        })
 			}
 			else
@@ -126,7 +131,27 @@ export class RegisterPage {
 	        console.log('Error: ', err);
 	    });
 	  }
-
+	SeverNotLogin(){
+  		const confirm = this.alertCtrl.create({
+		title: 'System maintenance',
+		message: 'The system is updating. Please come back after a few minutes',
+		buttons: [
+		{
+		  text: 'Cancel',
+		  handler: () => {
+		    
+		  }
+		},
+		{
+		  text: 'Exit',
+		  handler: () => {
+		   	this.platform.exitApp();
+		  }
+		}
+		]
+		});
+		confirm.present();
+  	}
 	noQrcode() {
 		let toast = this.toastCtrl.create({
 	      message: 'Error Qrcode',

@@ -80,7 +80,18 @@ page-user-detail {
 		border-radius: 50%;
 		margin-bottom: 10px;
 	}
-	
+	ion-item.item:last-child{
+		border-bottom: none !important;
+	}
+	.item-ios h2 ,.item-md h2{
+	    margin: 0 0 2px;
+	    font-size: 14px;
+	    font-weight: normal;
+	    color: #403e3e;
+	}
+	.label-ios {
+	    font-size: 14px;
+	}
 }
 .back-button{
     color: #fff !important;

@@ -1,7 +1,8 @@
 <ion-header >
   <ion-navbar no-border-bottom>
     <button class="goback" (click)="goback()">
-      <ion-icon name="arrow-round-back" margin-right></ion-icon> Go back
+      <ion-icon float-left name="arrow-round-back" margin-right></ion-icon>
+      <ion-title float-left text-center>{{pageStatus}}</ion-title>
     </button>
   </ion-navbar>
 </ion-header>
@@ -11,62 +12,58 @@
 	</ion-row>
 
 	<ion-row text-center class="pin">
-		<p *ngIf="pin_keyboard=== 'val'">Create Pin</p>
-        <p *ngIf="pin_keyboard != 'val'">Please Enter Repeat Pin</p>
+		<p>{{pageStatus}}</p>
 		<div class="radio" text-center>
-			<span *ngIf="number1=== 'null'"></span>
-			<span *ngIf="number1 != 'null'" class="active"></span>
-			<span *ngIf="number2=== 'null'"></span>
-			<span *ngIf="number2 != 'null'" class="active"></span>
-			<span *ngIf="number3=== 'null'"></span>
-			<span *ngIf="number3 != 'null'" class="active"></span>
-			<span *ngIf="number4=== 'null'"></span>
-			<span *ngIf="number4 != 'null'" class="active"></span>
+			<span *ngIf="codeone == null"></span>
+            <span *ngIf="codeone != null" class="active"></span>
+            <span *ngIf="codetwo == nul"></span>
+            <span *ngIf="codetwo != nul" class="active"></span>
+            <span *ngIf="codethree == nul"></span>
+            <span *ngIf="codethree != nul" class="active"></span>
+            <span *ngIf="codefour == nul"></span>
+            <span *ngIf="codefour != nul" class="active"></span>
 		</div>
 	</ion-row>
-	<p ion-text text-center *ngIf="valpin=== 'empty'" color="danger" padding-left>
-        The pin does not match!
-		
-	</p>
+	
 	<ion-row class="keyboard">
-        <ion-col col-4 (click)="Clicknumber(1)">
+        <ion-col col-4 (click)="add(1)">
         	1
         </ion-col>
-        <ion-col col-4 (click)="Clicknumber(2)">
+        <ion-col col-4 (click)="add(2)">
         	2
         </ion-col>
         
-        <ion-col col-4 (click)="Clicknumber(3)">
+        <ion-col col-4 (click)="add(3)">
         	3
         </ion-col>
-        <ion-col col-4 (click)="Clicknumber(4)">
+        <ion-col col-4 (click)="add(4)">
         	4
         </ion-col>
-        <ion-col col-4 (click)="Clicknumber(5)">
+        <ion-col col-4 (click)="add(5)">
         	5
         </ion-col>
         
-        <ion-col col-4 (click)="Clicknumber(6)">
+        <ion-col col-4 (click)="add(6)">
         	6
         </ion-col>
-        <ion-col col-4 (click)="Clicknumber(7)">
+        <ion-col col-4 (click)="add(7)">
         	7
         </ion-col>
-        <ion-col col-4 (click)="Clicknumber(8)">
+        <ion-col col-4 (click)="add(8)">
         	8
         </ion-col>
         
-        <ion-col col-4 (click)="Clicknumber(9)">
+        <ion-col col-4 (click)="add(9)">
         	9
         </ion-col>
         
         <ion-col col-4>
         	
         </ion-col>
-        <ion-col col-4 (click)="Clicknumber(0)">
+        <ion-col col-4 (click)="add(0)">
         	0
         </ion-col>
-        <ion-col col-4 (click)="Blackspace()">
+        <ion-col col-4 (click)="delete()">
         	<ion-icon name="backspace"></ion-icon>
         </ion-col>
     </ion-row>

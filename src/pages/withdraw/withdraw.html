@@ -57,17 +57,18 @@
 		</ion-card-content>
 	</ion-card>
 	<div class="clear_div"></div>
-	<ion-card>
+	<ion-card class="crad-exchange">
 
 		<ion-card-header>
-	        <ion-card-title>Withdraw</ion-card-title>
+	        <ion-card-title>Submit Withdraw</ion-card-title>
 	    </ion-card-header>
 	    <ion-card-content>
 		    <form (ngSubmit)="SubmitForm()">
 			    <ion-row>
 					<ion-col >
-						<ion-item class="border"> 
-						  <ion-label>Currency</ion-label>
+						
+						<ion-item class="border-bottom"> 
+						  <ion-label stacked>Currency</ion-label>
 						  <ion-select [(ngModel)]="form.currency" name="currency" okText="Confirm" cancelText="Cancel" (ionChange)="onChangeSelect($event)">
 						    <ion-option value="BTC">Bitcoin</ion-option>
 						    <ion-option value="ETH">Ethereum</ion-option>
@@ -80,28 +81,26 @@
 					</ion-col >
 					
 				</ion-row>
-			    
-				<ion-row>
-					<ion-col >
-						<ion-item class="border">
-						    <ion-label >Amount</ion-label>
-						    <ion-input [(ngModel)]="form.amount" name="amount" type="number" text-right placeholder="..." (keyup)='onChangeInput($event.target.value)'></ion-input>
-					  	</ion-item>
-					</ion-col>
-				</ion-row>
 				<ion-row class="">
+					<ion-col >
+						<ion-item class="border-bottom">
+						    <ion-label stacked>Amount</ion-label>
+						    <ion-input [(ngModel)]="form.amount" name="amount" type="number" text-right placeholder="0,0000" (keyup)='onChangeInput($event.target.value)'></ion-input>
+					  	</ion-item>
+					</ion-col>
+				
 					<ion-col>
-					  	<ion-item class="border input-readonly">
-						    <ion-label >Estimate USD</ion-label>
-						    <ion-input [(ngModel)]="form.amount_estimate" name="amount_estimate" type="number" text-right placeholder="..." readonly="true"></ion-input>
+					  	<ion-item class="border-bottom input-readonly">
+						    <ion-label stacked style="color:#cecdcd !important">Estimate USD</ion-label>
+						    <ion-input class="amount_estimate" [(ngModel)]="form.amount_estimate" name="amount_estimate" type="number" text-right placeholder="0,0000" readonly="true"></ion-input>
 					  	</ion-item>
 					</ion-col>
 				</ion-row>
 				<ion-row>
 					<ion-col>
-					  	<ion-item class="border">
-						    <ion-label >Address</ion-label>
-						    <ion-input [(ngModel)]="form.wallet" name="wallet" type="text" text-right placeholder="..."></ion-input>
+					  	<ion-item class="border-bottom">
+						    <ion-label stacked>Address</ion-label>
+						    <ion-input [(ngModel)]="form.wallet" name="wallet" type="text" text-right placeholder="Address"></ion-input>
 					  	</ion-item>
 					</ion-col>
 				</ion-row>
@@ -134,12 +133,12 @@
 		          	</ion-col>
 		        </ion-row>
 		        <ion-row>
-		          	<ion-col col-5>
+		          	<ion-col col-7>
 		          		<span float-left class="date_added">{{item.date_added}}</span>
 		          	</ion-col>
-		          	<ion-col col-7>
-	          			<span float-right *ngIf="item.status == 0">Pendding</span>
-	          			<span float-right *ngIf="item.status == 1">Finish</span>
+		          	<ion-col col-5>
+	          			<span class="status" float-right *ngIf="item.status == 0">Pendding</span>
+	          			<span class="status" float-right *ngIf="item.status == 1">Finish</span>
 		          	</ion-col>
 		        </ion-row>
 		        <ion-row *ngIf="item.status == 1">
@@ -155,7 +154,7 @@
 		       	
 			</ion-grid>
 			<p text-center  *ngIf="count_history == 0">No data</p>
-			<ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+			<ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="count_history > 0">
 				   <ion-infinite-scroll-content></ion-infinite-scroll-content>
 				 </ion-infinite-scroll>
 	    </ion-card-content>

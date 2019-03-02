@@ -69,9 +69,8 @@ export class RegisterServerProvider {
 
     
     private catchError(error : Response){
-		console.log(error);
-		return Observable.throw(error.json().error || "server login error");
-	}
+  		return Observable.throw(error.json().error || "server login error");
+  	}
 
   	private logResponse(res : Response){
   		console.log(res);

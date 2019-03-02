@@ -74,4 +74,34 @@ page-reffral {
 	.none-active-email{
 		background: #eab2ae5c;
 	}
+	.list-ios > .item-block:last-child, .list-ios > .item-wrapper:last-child .item-block{
+		border: none;
+	}
+	ion-list:last-child{
+		border: none !important;
+	}
+	.item-ios h2 ,.item-md h2{
+	    margin: 0 0 2px;
+	    font-size: 14px;
+	    font-weight: normal;
+	    color: #403e3e;
+	}
+}
+.card-ios{
+	border: none !important;
+	box-shadow: none !important;
+}
+
+
+.label-ios {
+    margin: 0px;
+}
+.card-ios p {
+    color: #2d2d2d;
+}
+.back-button-text-ios{
+	display: none;
+}
+.list-ios > .item-block:first-child{
+	border: none;
 }
