@@ -114,13 +114,11 @@ export class RegisterPage {
 	      let string = barcodeData.text;
 	      let string_slip = string.split("_");
 	      this.customer_sponser = string_slip[0].slice(9);
-	      
-	      
 		    let toast = this.toastCtrl.create({
-		      message: 'Scan successful QR code',
-		      position: 'bottom',
+		      message: 'You are registered with sponser '+string_slip[1],
+		      position: 'top',
 		      duration : 2000,
-		      cssClass : 'successqrcode'
+		      cssClass : 'alert_success'
 		      
 		    });
 		    toast.present();

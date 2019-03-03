@@ -59,48 +59,47 @@
 	</ion-card>
 	<div class="clear_div"></div>
 	<ion-card>
-
 		<ion-card-header>
-	        <ion-card-title>Price Altcoin</ion-card-title>
+	        <ion-card-title>Profit wallet</ion-card-title>
 	    </ion-card-header>
-	    <ion-card-content>
-	    	<ion-grid>
-		      	<ion-row >
-		          <ion-col style="border: 1px solid #eee;border-bottom: none; border-right: none;font-size: 12px;">
-		            <ion-label float-left>BTC/USD</ion-label>
-		            <ion-label float-right>{{price_coin.btc_usd}}</ion-label>
-		          </ion-col>
-		          <ion-col style="border: 1px solid #eee;border-bottom: none; font-size: 12px;">
-		            <ion-label float-left>ETH/USD</ion-label>
-		            <ion-label float-right>{{price_coin.eth_usd}}</ion-label>
-		          </ion-col>
-		          
-		        </ion-row>
-		        <ion-row >
-		          <ion-col style="border: 1px solid #eee; border-right: none;border-bottom: none;font-size: 12px;">
-		            <ion-label float-left>XRP/USD</ion-label>
-		            <ion-label float-right>{{price_coin.xrp_usd}}</ion-label>
-		          </ion-col>
-		          <ion-col style="border: 1px solid #eee;border-bottom: none;font-size: 12px;">
-		            <ion-label float-left>USDT/USD</ion-label>
-		            <ion-label float-right>{{price_coin.usdt_usd}}</ion-label>
-		          </ion-col>
-		          
-		        </ion-row>	
-		        <ion-row >
-		        	<ion-col style="border: 1px solid #eee; border-right: none;font-size: 12px;">
-			            <ion-label float-left>STO/USD</ion-label>
-			            <ion-label float-right>{{price_coin.coin_usd}}</ion-label>
-		          	</ion-col>
-		          <ion-col style="border: 1px solid #eee;font-size: 12px;">
-		            <ion-label float-left>LTC/USD</ion-label>
-		            <ion-label float-right>{{price_coin.ltc_usd}}</ion-label>
-		          </ion-col>
-		        </ion-row>
-			</ion-grid>	
-	 	</ion-card-content>
+	    <ion-card-content class="wallet_invest">
+			<ion-grid>
+				<ion-row >
+					<ion-col (click)="ViewHistory('Profit day')" class="border border-right-none border-bottom-none">
+						<h4 text-center >Profit day</h4>
+	            		<p text-center>{{invest_wallet.d_wallet}} USD</p>	
+					</ion-col>
+					<ion-col (click)="ViewHistory('Direct commission')" class="border border-bottom-none">
+						<h4 text-center >Direct commission</h4>
+	            		<p text-center>{{invest_wallet.r_wallet}} USD</p>
+					</ion-col>
+				</ion-row>
+				<ion-row >
+					<ion-col (click)="ViewHistory('System commission')" class="border border-right-none border-bottom-none">
+						<h4 text-center >System commission</h4>
+	            		<p text-center>{{invest_wallet.s_wallet}} USD</p>
+					</ion-col >
+					<ion-col  (click)="ViewHistory('Leadership commission')" class="border border-bottom-none">
+					 	<h4 text-center >Leadership commission</h4>
+	            		<p text-center>{{invest_wallet.l_wallet}} USD</p>
+					</ion-col>
+				</ion-row>
+				<ion-row >
+					<ion-col (click)="ViewHistory('Share sales')"  class="border border-right-none">
+						<h4 text-center >Share sales</h4>
+	            		<p text-center>{{invest_wallet.ss_wallet}} USD</p>
+					</ion-col >
+					<ion-col (click)="ViewHistory('Share Fund')" class="border">
+					 	<h4 text-center >Share Fund</h4>
+	            		<p text-center>{{invest_wallet.sf_wallet}} USD</p>
+					</ion-col>
+				</ion-row>
+			</ion-grid>
+		</ion-card-content>
 	</ion-card>
+
 	<div class="clear_div"></div>
+	
 	<ion-card class="crad-exchange">
 
 		<ion-card-header>

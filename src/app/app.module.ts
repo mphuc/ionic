@@ -31,7 +31,8 @@ import { CreatepinPage } from '../pages/createpin/createpin';
 import { DetailWithdrawPage } from '../pages/detail-withdraw/detail-withdraw';
 import { SupportDetailPage } from '../pages/support-detail/support-detail';
 import { VerificationAccountPage } from '../pages/verification-account/verification-account';
-
+import { ProfitHistoryPage } from '../pages/profit-history/profit-history';
+import { NotificationDetaiPage } from '../pages/notification-detai/notification-detai';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -71,7 +72,9 @@ import { FileTransfer } from '@ionic-native/file-transfer';
     CreatepinPage,
     DetailWithdrawPage,
     SupportDetailPage,
-    VerificationAccountPage
+    VerificationAccountPage,
+    ProfitHistoryPage,
+    NotificationDetaiPage
   ],
   imports: [
     BrowserModule,
@@ -103,7 +106,9 @@ import { FileTransfer } from '@ionic-native/file-transfer';
     CreatepinPage,
     DetailWithdrawPage,
     SupportDetailPage,
-    VerificationAccountPage
+    VerificationAccountPage,
+    ProfitHistoryPage,
+    NotificationDetaiPage
   ],
   providers: [
     StatusBar,

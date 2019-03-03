@@ -21,6 +21,7 @@ import { ReffralServerProvider } from '../../providers/reffral-server/reffral-se
 export class ReffralPage {
 	customer_id :any;
 	history : any;
+	email = '';
 	count_history = 0;
   constructor(
   	public navCtrl: NavController, 
@@ -42,6 +43,20 @@ export class ReffralPage {
 			    content: 'Please wait...'
 			  	});
 			  	loading.present();
+
+
+			  	this.ReffralServer.GetInfomationUser(this.customer_id)
+		        .subscribe((data) => {
+		        	
+					if (data.status == 'complete')
+					{
+				  		this.email =  data.email;
+					}
+					else
+					{
+						this.navCtrl.setRoot(HomePage);
+					}
+		        })
 
 		        this.ReffralServer.GetMember(this.customer_id,0,5)
 		        .subscribe((data) => {

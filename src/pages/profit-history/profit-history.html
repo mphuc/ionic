@@ -1,0 +1,59 @@
+<!--
+  Generated template for the ProfitHistoryPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{name_history}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+	<ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+	<ion-card>
+		
+		<ion-card-header>
+	        <ion-card-title>{{name_history}}</ion-card-title>
+	    </ion-card-header>
+
+	    <ion-card-content class="history">
+	    	<ion-grid *ngFor="let item of history" style="border-bottom: 1px solid #eee;" >
+		      	<ion-row >
+		          	<ion-col col-6>
+		          		<span float-left><span class="iconstatus " [ngClass]="{'finish_withdraw': item.status === 1}"></span> {{item.type}}</span>
+		          	</ion-col>
+		          	<ion-col col-6>
+		          			<span float-right class="amount">+{{item.amount}}  {{item.currency}} </span>
+		          		
+		          	</ion-col>
+		        </ion-row>
+		        <ion-row>
+		          	<ion-col col-7>
+		          		<span float-left class="date_added">{{item.date_added}}</span>
+		          	</ion-col>
+		          	<ion-col col-5>
+	          			
+	          			<span float-right >Finish</span>
+		          	</ion-col>
+		        </ion-row>
+		        
+			</ion-grid>
+
+			<p text-center  *ngIf="count_history == 0">No data</p>
+	    	<ion-grid>
+		      	
+
+		       	<ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="count_history > 0">
+				   <ion-infinite-scroll-content></ion-infinite-scroll-content>
+			 	</ion-infinite-scroll>
+			</ion-grid>
+	    </ion-card-content>
+	</ion-card>
+</ion-content>

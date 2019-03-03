@@ -13,6 +13,38 @@
 </ion-header>
 
 
-<ion-content>
-	<p text-center>There are no announcements</p>
+<ion-content  >
+	<ion-card-header>
+        <ion-card-title>Notification</ion-card-title>
+    </ion-card-header>
+
+	<ion-card-content class="history">
+		<ion-grid  *ngFor="let item of history " style="border-bottom: 1px solid #eee;" >
+	      	<ion-row >
+	          	<ion-col col-9 style="max-height: 41px;overflow: hidden;">
+	          		<span float-left><span class="iconstatus " [ngClass]="{'finish_withdraw': item.read === 1}"></span>
+	          		<span class="large" [innerHTML]="item.content">	</span>
+	          		 </span>
+	          	</ion-col>
+	          	<ion-col col-3>
+	          		<span float-right text-center style=" border-radius: 10px; padding: 5px 10px; color: #4CAF50; font-size: 14px; margin-top: 3px;" (click)="ViewDetailNotification(item._id)">View</span>
+	          	</ion-col>
+	          	
+	        </ion-row>
+	        <ion-row>
+	          	<ion-col col-7>
+	          		<span float-left class="date_added">{{item.date_added}}</span>
+	          	</ion-col>
+	          	<ion-col col-5>
+	      			<span style="color: #7d7b7b; font-size: 14px;" float-right *ngIf="item.read == 0">Seen</span>
+	      			<span style="color: #7d7b7b; font-size: 14px;" float-right *ngIf="item.read == 1">Watched</span>
+	          	</ion-col>
+	        </ion-row>
+	        
+		</ion-grid>
+		<p text-center  *ngIf="count_history == 0">No data</p>
+		<ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+			   <ion-infinite-scroll-content></ion-infinite-scroll-content>
+			 </ion-infinite-scroll>
+		</ion-card-content>
 </ion-content>

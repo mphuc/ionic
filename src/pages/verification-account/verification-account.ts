@@ -50,6 +50,7 @@ export class VerificationAccountPage {
 	private fileTransfer: FileTransferObject = this.transfer.create();
 
 	ionViewDidLoad() {
+		
 		this.storage.get('customer_id')
 		.then((customer_id) => {
 			if (customer_id) 
@@ -66,10 +67,21 @@ export class VerificationAccountPage {
 		        	loading.dismiss();
 					if (data.status == 'complete')
 					{
-				  		this.infomation['email'] =  data.email;
-				  		this.infomation['date_added'] =  data.date_added;
-				  		this.infomation['investment'] =  data.investment;
-				  		this.infomation['img_profile'] =  data.img_profile;
+				  		this.infomation['img_address'] =  data.img_address;
+				  		this.infomation['img_passport_fontside'] =  data.img_passport_fontside;
+				  		this.infomation['img_passport_backside'] =  data.img_passport_backside;
+				  		
+				  		this.infomation['verification'] =  data.verification;
+
+				  		if (data.date_birthday != '')
+				  		{
+				  			this['form']['first_name'] = data.firstname;
+					  		this['form']['last_name'] = data.lastname;
+					  		this['form']['birth_day'] = new Date(data.date_birthday).toISOString();
+					  		this['form']['telephone'] = data.telephone;
+					  		this['form']['address'] = data.address;
+				  		}
+					  		
 					}
 					else
 					{
@@ -202,13 +214,13 @@ export class VerificationAccountPage {
 				}
 				else
 				{
-					if (this.form['address']  == undefined || this.form['address'] == '')
+					if (this.form['telephone']  == undefined || this.form['telephone'] == '')
 					{
-						this.AlertToast('Please enter the address');
+						this.AlertToast('Please enter the telephone');
 					}
 					else
 					{
-						if (this.form['telephone']  == undefined || this.form['telephone'] == '')
+						if (this.form['address']  == undefined || this.form['address'] == '')
 						{
 							this.AlertToast('Please enter the address');
 						}

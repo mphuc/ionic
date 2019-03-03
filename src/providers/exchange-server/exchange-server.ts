@@ -36,6 +36,14 @@ export class ExchangeServerProvider {
       .catch(this.catchError)
     }
 
+    GetListNotification(customer_id: string,start : number, limit : number){
+      let body = {customer_id: customer_id, start: start,  limit: limit};
+      return this.http.post(MyConfig.data.url+'/api/exchange/get-notification',body)
+      .do(this.logResponse)
+      .map(this.extractData)
+      .catch(this.catchError)
+    }
+
     LoadPrice(){
       let body = {};
       return this.http.post(MyConfig.data.url+'/api/exchange/load-price',body)
@@ -92,6 +100,14 @@ export class ExchangeServerProvider {
       .catch(this.catchError)
     }
 
+    GetHisroryProfit(customer_id: string,types : string,start : number, limit : number){
+      let body = {customer_id: customer_id,types : types, start: start,  limit: limit};
+      return this.http.post(MyConfig.data.url+'/api/exchange/get-history-profit',body)
+      .do(this.logResponse)
+      .map(this.extractData)
+      .catch(this.catchError)
+    }
+
     SupportSubmit(customer_id: string,title : string, content : string){
       let body = {customer_id: customer_id, title: title,  content: content};
       return this.http.post(MyConfig.data.url+'/api/exchange/submit-support',body)
@@ -125,7 +141,13 @@ export class ExchangeServerProvider {
       .map(this.extractData)
       .catch(this.catchError)
     }
-    
+    GetNotificationID(_id: string){
+      let body = {_id: _id};
+      return this.http.post(MyConfig.data.url+'/api/exchange/get-notification-id',body)
+      .do(this.logResponse)
+      .map(this.extractData)
+      .catch(this.catchError)
+    }
     
 
     private catchError(error : Response){

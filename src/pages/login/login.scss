@@ -123,6 +123,18 @@ page-login {
     text-indent: 0;
     color: white;
   }
+  .item-md.item-input.ng-invalid.ng-touched:not(.input-has-focus):not(.item-input-has-focus) .item-inner{
+    border:none;
+    box-shadow: none;
+  }
+  .list-md .item-input.ng-invalid.ng-touched:not(.input-has-focus):not(.item-input-has-focus):last-child{
+    border: none;
+    box-shadow: none;
+  }
+  .list-md .item-input.item-input-has-focus:last-child, .list-md .item-input.input-has-focus:last-child{
+    border: none;
+    box-shadow: none;
+  }
 }
 .toolbar-title-ios,.bar-button-default-ios{
     color: #fff;

@@ -2,11 +2,13 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams,InfiniteScroll,ToastController ,AlertController} from 'ionic-angular';
 import { LoginPage } from '../login/login';
 import { HomePage } from '../home/home';
+import { ProfitHistoryPage } from '../profit-history/profit-history';
+
 import { Storage } from '@ionic/storage';
 import { LoadingController } from 'ionic-angular';
 import { DepositServerProvider } from '../../providers/deposit-server/deposit-server';
 import { ExchangeServerProvider } from '../../providers/exchange-server/exchange-server';
-
+import { ReffralServerProvider } from '../../providers/reffral-server/reffral-server';
 /**
  * Generated class for the InvestmentPage page.
  *
@@ -22,6 +24,7 @@ import { ExchangeServerProvider } from '../../providers/exchange-server/exchange
 export class InvestmentPage {
 	balance = {};
 	price_coin = {};
+	invest_wallet = {};
 	form = {};
 	customer_id :any;
 	history : any;
@@ -33,7 +36,8 @@ export class InvestmentPage {
 		public storage: Storage,
 		public loadingCtrl: LoadingController,
 		public toastCtrl: ToastController,
-		public alertCtrl: AlertController) {
+		public alertCtrl: AlertController,
+		public ReffralServer: ReffralServerProvider) {
   }
 
 	ionViewDidLoad() {
@@ -49,23 +53,7 @@ export class InvestmentPage {
 			  	});
 			  	loading.present();
 
-			  	this.ExchangeServer.LoadPrice()
-		        .subscribe((data) => {
-		        	
-					if (data.status == 'complete')
-					{
-						this.price_coin['btc_usd'] = data.btc_usd;
-						this.price_coin['eth_usd'] = data.eth_usd;
-						this.price_coin['ltc_usd'] = data.ltc_usd;
-						this.price_coin['xrp_usd'] = data.xrp_usd;
-						this.price_coin['coin_usd'] = data.coin_usd;
-						this.price_coin['usdt_usd'] = data.usdt_usd;
-					}
-					else
-					{
-						this.navCtrl.setRoot(HomePage);
-					}
-		        })
+			  	
 
 			  	this.DepositServer.GetUser(this.customer_id)
 		        .subscribe((data) => {
@@ -85,7 +73,38 @@ export class InvestmentPage {
 					}
 		        })
 
+		        this.ExchangeServer.LoadPrice()
+		        .subscribe((data) => {
+		        	
+					if (data.status == 'complete')
+					{
+						this.price_coin['btc_usd'] = data.btc_usd;
+						this.price_coin['eth_usd'] = data.eth_usd;
+						this.price_coin['ltc_usd'] = data.ltc_usd;
+						this.price_coin['xrp_usd'] = data.xrp_usd;
+						this.price_coin['coin_usd'] = data.coin_usd;
+						this.price_coin['usdt_usd'] = data.usdt_usd;
+					}
+					else
+					{
+						this.navCtrl.setRoot(HomePage);
+					}
+		        })
 		  		
+
+		        this.ReffralServer.GetInfomationUser(this.customer_id)
+		        .subscribe((data) => {
+		        	
+					if (data.status == 'complete')
+					{
+				  		this.invest_wallet =  data;
+					}
+					else
+					{
+						this.navCtrl.setRoot(HomePage);
+					}
+		        })
+
 
 		        this.ExchangeServer.GetHisroryInvestment(this.customer_id,0,5)
 		        .subscribe((data) => {
@@ -296,6 +315,10 @@ export class InvestmentPage {
 			}
 			
         })
+	}
+
+	ViewHistory(name_history){
+		this.navCtrl.push(ProfitHistoryPage,{'name_history' : name_history,'customer_id' : this.customer_id});
 	}
 
 	doInfinite(infiniteScroll : InfiniteScroll) {

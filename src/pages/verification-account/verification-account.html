@@ -24,8 +24,10 @@
 				<ion-row text-center>
 					<ion-col col-12 text-center>
 						<h2>Passport fontside</h2>
-						<button class="button_camera" *ngIf="img_passport_fontside == ''"  ion-button color="danger" (click)="open_camera_passport_fontside()" icon-left><ion-icon name="camera"></ion-icon> Take Picture</button>
-						<img *ngIf="img_passport_fontside != ''" src="{{img_passport_fontside}}" class="img-camera-take" />
+						
+						<button class="button_camera" *ngIf="img_passport_fontside == '' && infomation.img_passport_fontside == '' "  ion-button color="danger" (click)="open_camera_passport_fontside()" icon-left><ion-icon name="camera"></ion-icon> Take Picture</button>
+						<img *ngIf="img_passport_fontside != '' && infomation.img_passport_fontside == ''" src="{{img_passport_fontside}}" class="img-camera-take" />
+						<img *ngIf="img_passport_fontside == '' && infomation.img_passport_fontside != ''" src="{{infomation.img_passport_fontside}}" class="img-camera-take" />
 					</ion-col>
 				</ion-row>
 			</ion-grid>
@@ -34,8 +36,10 @@
 				<ion-row text-center>
 					<ion-col col-12 text-center>
 						<h2>Passport backside</h2>
-						<button class="button_camera" *ngIf="img_passport_backside == ''" ion-button color="danger" (click)="open_camera_passport_backside()" icon-left><ion-icon name="camera"></ion-icon> Take Picture</button>
-						<img *ngIf="img_passport_backside != ''" src="{{img_passport_backside}}" class="img-camera-take" />
+						<button class="button_camera" *ngIf="img_passport_backside == '' && infomation.img_passport_backside == '' " ion-button color="danger" (click)="open_camera_passport_backside()" icon-left><ion-icon name="camera"></ion-icon> Take Picture</button>
+						<img *ngIf="img_passport_backside != '' && infomation.img_passport_backside == ''" src="{{img_passport_backside}}" class="img-camera-take" />
+
+						<img *ngIf="img_passport_backside == '' && infomation.img_passport_backside != ''" src="{{infomation.img_passport_backside}}" class="img-camera-take" />
 					</ion-col>
 				</ion-row>
 			</ion-grid>
@@ -44,8 +48,9 @@
 				<ion-row text-center>
 					<ion-col col-12 text-center>
 						<h2>Picture Address</h2>
-						<button class="button_camera" *ngIf="img_address == ''" ion-button color="danger" (click)="open_camera_address()" icon-left><ion-icon name="camera"></ion-icon> Take Picture</button>
-						<img *ngIf="img_address != ''" src="{{img_address}}" class="img-camera-take" />
+						<button class="button_camera" *ngIf="img_address == '' && infomation.img_address == '' " ion-button color="danger" (click)="open_camera_address()" icon-left><ion-icon name="camera"></ion-icon> Take Picture</button>
+						<img *ngIf="img_address != '' && infomation.img_address == ''" src="{{img_address}}" class="img-camera-take" />
+						<img *ngIf="img_address == '' && infomation.img_address != ''" src="{{infomation.img_address}}" class="img-camera-take" />
 					</ion-col>
 				</ion-row>
 			</ion-grid>
@@ -65,28 +70,29 @@
 
 				  <ion-item>
 				    <ion-label stacked>First Name</ion-label>
-				    <ion-input type="text" [(ngModel)]="form.first_name" name="first_name"  placeholder=""></ion-input>
+				    <ion-input type="text" [(ngModel)]="form.first_name" name="first_name"  placeholder="" ></ion-input>
 				  </ion-item>
 
 				  <ion-item>
 				    <ion-label stacked>Last Name</ion-label>
-				    <ion-input type="text" [(ngModel)]="form.last_name" name="last_name"  placeholder=""></ion-input>
+				    <ion-input type="text" [(ngModel)]="form.last_name" name="last_name"  placeholder="" ></ion-input>
 				  </ion-item>
 
 				  <ion-item>
 				    <ion-label stacked>Date of birth</ion-label>
-				    <ion-input type="date" [(ngModel)]="form.birth_day" name="birth_day" placeholder=""></ion-input>
+				    <ion-datetime displayFormat="MMM DD, YYYY" pickerFormat="MMM DD, YYYY" [(ngModel)]="form.birth_day" name="birth_day"></ion-datetime>
+				    <!-- <ion-input type="date" displayFormat="MM/DD/YYYY min="2018" [(ngModel)]="form.birth_day" name="birth_day" placeholder=""></ion-input> -->
 				  </ion-item>
 				  <ion-item>
 				    <ion-label stacked>Telephone</ion-label>
-				    <ion-input type="text" [(ngModel)]="form.telephone" name="telephone"  placeholder=""></ion-input>
+				    <ion-input type="text" [(ngModel)]="form.telephone" name="telephone"  placeholder="" ></ion-input>
 				  </ion-item>
 				  <ion-item>
 				    <ion-label stacked>Address</ion-label>
-				    <ion-input type="text" [(ngModel)]="form.address" name="address"  placeholder=""></ion-input>
+				    <ion-input type="text" [(ngModel)]="form.address" name="address"  placeholder="" ></ion-input>
 				  </ion-item>
 
-				  <div padding margin-top  class="customer_width">
+				  <div padding margin-top  class="customer_width" *ngIf="infomation.verification != 2">
 					<button ion-button type="submit" block>Update Infomation</button>
 				</div>
 				</ion-list>

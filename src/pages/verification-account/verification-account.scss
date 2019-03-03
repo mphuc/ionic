@@ -113,7 +113,7 @@ page-verification-account {
 	  .item-md.item-input.item-input-has-focus .item-inner, .item-md.item-input.input-has-focus .item-inner{
 	    box-shadow: none;
 	  }
-	ion-input{
+	ion-input,ion-datetime{
 	    border-bottom: 1px solid #eee;
 	    
 	    padding: 0px 10px;

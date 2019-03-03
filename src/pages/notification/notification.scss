@@ -2,4 +2,36 @@ page-notification {
 	.back-button{
 	    color: #fff !important;
 	}
+	.history .iconstatus{
+		width: 10px;
+		height: 10px;
+		border-radius: 50%;
+		background: #FFC107;
+	    margin-top: 3px;
+	    margin-right: 12px;
+	    float: left;
+	}
+	.history  span{
+	    line-height: 18px;
+	    color: #353535;
+	    font-size: 16px;
+	}
+	
+	.history .amount{
+		font-size: 22px;
+    	font-weight: bold;
+	}
+	.history .date_added{
+		font-size: 14px;
+		color: #8c8888;
+	}
+	.history .txtid{
+		font-size: 13px;
+	    background: #f5f5f5;
+	    padding: 10px;
+	    border-radius: 5px;
+	}
+	.finish_withdraw{
+		background: #4caf50 !important;
+	}
 }

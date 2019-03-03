@@ -1,14 +1,16 @@
 <ion-header >
-  <ion-navbar no-border-bottom>
-    <button class="goback" (click)="goback()">
-      <ion-icon float-left name="arrow-round-back" margin-right></ion-icon>
-      <ion-title float-left text-center>{{pageStatus}}</ion-title>
-    </button>
-  </ion-navbar>
+      <ion-navbar>
+        <button  float-left class="icon-back">
+          <ion-icon  name="arrow-back" (click)="goback()"></ion-icon>
+        </button>
+        <ion-title float-left text-center>{{pageStatus}}</ion-title>
+        
+      </ion-navbar>
+  
 </ion-header>
 <ion-content>
 	<ion-row text-center class="logo">
-		<img src="assets/img/logo.png" height="80"/>
+		<img src="assets/imgs/logo.png" height="80"/>
 	</ion-row>
 
 	<ion-row text-center class="pin">

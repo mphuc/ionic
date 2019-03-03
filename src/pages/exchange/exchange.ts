@@ -184,7 +184,7 @@ export class ExchangePage {
 		            			loadingss.dismiss();
 		            			let toast = this.toastCtrl.create({
 									message: 'The conversion process was successfuly',
-									position: 'bottom',
+									position: 'top',
 									duration : 2000,
 									cssClass : 'alert_success'
 								});
