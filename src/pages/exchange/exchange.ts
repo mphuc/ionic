@@ -249,6 +249,7 @@ export class ExchangePage {
 			{
 				
 		  		this.history =  data;
+		  		this.count_history = data.length;
 			}
 			
         })

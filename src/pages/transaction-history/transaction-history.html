@@ -12,11 +12,9 @@
 
 <ion-content>
 	<ion-card>
-		<ion-card-header>
-	        <ion-card-title>Transaction History</ion-card-title>
-	    </ion-card-header>
-
+		
 	    <ion-card-content class="history">
+	    	<ion-searchbar (ionInput)="getItems($event)"></ion-searchbar> 
 	    	<ion-grid *ngFor="let item of history" style="border-bottom: 1px solid #eee;" >
 		      	<ion-row >
 		          	<ion-col col-6>

@@ -223,6 +223,7 @@ export class WithdrawPage {
 			{
 				
 		  		this.history =  data;
+		  		this.count_history = data.length;
 			}
 			
         })

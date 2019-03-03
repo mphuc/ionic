@@ -312,6 +312,7 @@ export class InvestmentPage {
 			{
 				
 		  		this.history =  data;
+		  		this.count_history = data.length;
 			}
 			
         })

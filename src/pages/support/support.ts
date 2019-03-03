@@ -152,6 +152,7 @@ export class SupportPage {
 			{
 				
 		  		this.history =  data;
+		  		this.count_history = data.length;
 			}
 			
         })

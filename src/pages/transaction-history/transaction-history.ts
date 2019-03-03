@@ -20,6 +20,7 @@ import { ExchangeServerProvider } from '../../providers/exchange-server/exchange
 export class TransactionHistoryPage {
 
 	history : any;
+	history_temp : any;
 	customer_id :any;
 	count_history = 0;
   constructor(
@@ -51,6 +52,7 @@ export class TransactionHistoryPage {
 					{
 						loading.dismiss();
 				  		this.history =  data;
+				  		this.history_temp = data;
 				  		this.count_history = data.length;
 					}
 					else
@@ -82,12 +84,39 @@ export class TransactionHistoryPage {
 				        "date_added" : item.date_added
 				  	})
 				}
+				this.history_temp = this.history;
 			}
 			infiniteScroll.complete();
 			
         })
 	}
 
+	getItems(ev: any) {
+	    
+	    let val = ev.target.value;
+
+	    // if the value is an empty string don't filter the items
+	    if (val && val.trim() != '') {
+	    	val = val.toLowerCase();
+	      this.history =  this.history_temp.filter((item) => {
+			  if (item.type.toLowerCase().indexOf(val) >= 0) {
+			    return true;
+			  }
+			  if (item.date_added.indexOf(val) >= 0) {
+			    return true;
+			  }
+			  if (item.amount.toString().indexOf(val) >= 0) {
+			    return true;
+			  }
+			  return false;
+			})
+	      
+	    }
+	    else
+	    {
+	    	this.history =  this.history_temp;
+	    }
+  	}
 	goback() {
 		this.navCtrl.setRoot(HomePage);
 	}
