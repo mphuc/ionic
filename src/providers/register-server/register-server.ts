@@ -67,6 +67,14 @@ export class RegisterServerProvider {
       .catch(this.catchError)
     }
 
+    UpdateInfomation(customer_id: string, first_name: string,last_name: string,birth_day: string, address: string,telephone : string){
+      let body = {customer_id: customer_id, first_name: first_name, last_name: last_name, birth_day : birth_day ,address : address, telephone: telephone };
+      return this.http.post(MyConfig.data.url+'/api/update-infomation',body)
+      .do(this.logResponse)
+      .map(this.extractData)
+      .catch(this.catchError)
+    }
+
     
     private catchError(error : Response){
   		return Observable.throw(error.json().error || "server login error");

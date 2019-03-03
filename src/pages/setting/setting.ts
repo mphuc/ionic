@@ -1,14 +1,18 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,AlertController ,ToastController} from 'ionic-angular';
 import { LoginPage } from '../login/login';
 import { HomePage } from '../home/home';
 import { ChangePasswordPage } from '../change-password/change-password';
+
+import { VerificationAccountPage } from '../verification-account/verification-account';
+
 import { CreatepinPage } from '../createpin/createpin';
 
 import { Storage } from '@ionic/storage';
 import { LoadingController } from 'ionic-angular';
 import { ReffralServerProvider } from '../../providers/reffral-server/reffral-server';
 import { Camera, CameraOptions } from '@ionic-native/camera';
+import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
 /**
  * Generated class for the SettingPage page.
  *
@@ -34,10 +38,12 @@ export class SettingPage {
   	public loadingCtrl: LoadingController,
   	public alertCtrl: AlertController,
   	public ReffralServer: ReffralServerProvider,
-  	private camera: Camera
-  	
+  	private camera: Camera,
+    private transfer: FileTransfer,
+  	public toastCtrl: ToastController,
   	) {
   }
+  private fileTransfer: FileTransferObject = this.transfer.create();
 
 	ionViewDidLoad() {
 		this.storage.get('customer_id')
@@ -96,31 +102,41 @@ export class SettingPage {
 	ViewChangepassword(){
 		this.navCtrl.push(ChangePasswordPage);
 	}
+  ViewVerification()
+  {
+    this.navCtrl.push(VerificationAccountPage);
+  }
+  clickImage(){
+      this.camera.getPicture({
+          quality: 50,
+          destinationType: this.camera.DestinationType.FILE_URI,
+          sourceType: this.camera.PictureSourceType.CAMERA,
+          encodingType: this.camera.EncodingType.JPEG
+      }).then((imageData) => {
+          let options: FileUploadOptions = {
+            fileKey: "file",
+            fileName:imageData.substr(imageData.lastIndexOf('/') + 1),
+            chunkedMode: false,
+            mimeType: "image/jpg"
+          }
+          let loading = this.loadingCtrl.create({
+            content: 'Please wait...'
+          });
+          loading.present();
 
-
-	clickImage()
-	{
-
-		const options: CameraOptions = {
-		  quality: 100,
-		  destinationType: this.camera.DestinationType.FILE_URI,
-		  encodingType: this.camera.EncodingType.JPEG,
-		  mediaType: this.camera.MediaType.PICTURE
-		}
-
-
-		this.camera.getPicture(options).then((imageData) => {
-		 let base64Image = 'data:image/jpeg;base64,' + imageData;
-		 this.img_camera = base64Image;
-		 	this.ReffralServer.UpdateImgProfile(this.customer_id,base64Image)
-	        .subscribe((data) => {
-	        	
-	        })
-		}, (err) => {
-		 // Handle error
-		});
-	}
-
+          this.fileTransfer.upload(imageData,'https://api.buy-sellpro.co/api/upload-img-profile/'+this.customer_id, options)
+          .then((data) => {
+            loading.dismiss();
+            this.AlertComplete('Successful update.');
+            this.img_camera = 'https://api.buy-sellpro.co/static/img/upload/'+options.fileName;
+          }, (err) => {
+            loading.dismiss();
+            this.AlertToast('Please try again.')
+          })
+      }, (err) => {
+          this.AlertToast('Please try again.')
+      });
+  }
 
 	presentConfirm_createPin() {
     let alert = this.alertCtrl.create({
@@ -167,6 +183,24 @@ export class SettingPage {
       }
 
     });
+  }
+  AlertToast(message) {
+      let toast = this.toastCtrl.create({
+        message: message,
+        position: 'top',
+        duration : 2000,
+        cssClass : 'error-submitform'
+      });
+      toast.present();
+    }
+  AlertComplete(message) {
+    let toast = this.toastCtrl.create({
+      message: message,
+      position: 'top',
+      duration : 2000,
+      cssClass : 'alert_success'
+    });
+    toast.present();
   }
 
   presentConfirm_createPin_disaple() {

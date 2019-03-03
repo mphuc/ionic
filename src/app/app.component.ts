@@ -6,7 +6,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { HomePage } from '../pages/home/home';
 
 import { LoginPage } from '../pages/login/login';
-//import { RegisterPage } from '../pages/register/register';
+import { RegisterPage } from '../pages/register/register';
 //import { ForgotPasswordPage } from '../pages/forgot-password/forgot-password';
 import { DepositPage } from '../pages/deposit/deposit';
 import { WithdrawPage } from '../pages/withdraw/withdraw';
@@ -18,6 +18,7 @@ import { InvestmentPage } from '../pages/investment/investment';
 import { TransactionHistoryPage } from '../pages/transaction-history/transaction-history';
 import { SupportPage } from '../pages/support/support';
 import { SettingPage } from '../pages/setting/setting';
+//import { VerificationAccountPage } from '../pages/verification-account/verification-account';
 //import { LogoutPage } from '../pages/logout/logout';
 //import { ChangePasswordPage } from '../pages/change-password/change-password';
 //import { DetailWithdrawPage } from '../pages/detail-withdraw/detail-withdraw';
@@ -28,13 +29,14 @@ import { Network } from '@ionic-native/network';
 import { Storage } from '@ionic/storage';
 import { ReffralServerProvider } from '../providers/reffral-server/reffral-server';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
+
 @Component({
   templateUrl: 'app.html'
 })
-export class MyApp {
+export class MyApp {    
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = HomePage;
+  rootPage: any = LockPage;
   infomation : any = {};
   customer_id : any = '';
   versionApp : any;
@@ -84,10 +86,9 @@ export class MyApp {
           this.SeverNotLogin();
         }
       })
-      
     });
     // get version
-
+    
     this.ReffralServer.GetVersionApp()
       .subscribe((data) => {
       if (data)
@@ -162,7 +163,7 @@ export class MyApp {
       } 
 
 
-      /*this.storage.get('customer_id')
+      this.storage.get('customer_id')
       .then((customer_id) => {
         
         if (customer_id) {
@@ -178,7 +179,7 @@ export class MyApp {
           }); 
         }
         this.platformReady()
-      });*/
+      });
 
 
     });
@@ -251,7 +252,7 @@ export class MyApp {
     {
       text: 'Update',
       handler: () => {
-        const browser = this.iab.create('https://ionicframework.com/');
+        this.iab.create('https://ionicframework.com/');
       }
     }
     ]

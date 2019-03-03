@@ -30,6 +30,8 @@ import { LockPage } from '../pages/lock/lock';
 import { CreatepinPage } from '../pages/createpin/createpin';
 import { DetailWithdrawPage } from '../pages/detail-withdraw/detail-withdraw';
 import { SupportDetailPage } from '../pages/support-detail/support-detail';
+import { VerificationAccountPage } from '../pages/verification-account/verification-account';
+
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -44,6 +46,7 @@ import { ReffralServerProvider } from '../providers/reffral-server/reffral-serve
 import { Camera } from '@ionic-native/camera';
 import { HeaderColor } from '@ionic-native/header-color';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { FileTransfer } from '@ionic-native/file-transfer';
 @NgModule({
   declarations: [
     MyApp,
@@ -67,7 +70,8 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
     LockPage,
     CreatepinPage,
     DetailWithdrawPage,
-    SupportDetailPage
+    SupportDetailPage,
+    VerificationAccountPage
   ],
   imports: [
     BrowserModule,
@@ -98,7 +102,8 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
     LockPage,
     CreatepinPage,
     DetailWithdrawPage,
-    SupportDetailPage
+    SupportDetailPage,
+    VerificationAccountPage
   ],
   providers: [
     StatusBar,
@@ -114,7 +119,8 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
     BarcodeScanner,
     Camera,
     HeaderColor,
-    InAppBrowser
+    InAppBrowser,
+    FileTransfer
     
   ]
 })

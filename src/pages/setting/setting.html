@@ -14,11 +14,8 @@
 			<ion-grid>
 				<ion-row text-center>
 					<ion-col col-12 text-center>
-						<img class="img-profile" (click)="clickImage()"  src="{{infomation.img_profile}}" />
-						<img *ngIf="img_camera == ''" class="img-profile" src="{{clickedImagePath}}" />
-						<img *ngIf="img_camera != ''" class="img-profile" src="{{img_camera}}">
-						<p>{{infomation.email}}</p>
-						
+						<img *ngIf="img_camera == ''" (click)="clickImage()" class="img-profile"  src="{{infomation.img_profile}}" />
+						<img *ngIf="img_camera != ''" (click)="clickImage()" class="img-profile" src="{{img_camera}}">
 						
 					</ion-col>
 				</ion-row>
@@ -41,11 +38,18 @@
 			          <ion-toggle (ionChange)="UpdateStatusPin()" [(ngModel)]="pintoggle" color="secondary"></ion-toggle>
 			        </ion-item>
 			    </ion-item-group>
+
+			    <ion-item-group>
+			        <ion-item >
+			          <ion-label (click)="ViewVerification()"><ion-icon name="card"></ion-icon> Account verification</ion-label>
+			        </ion-item>
+		      	</ion-item-group>
+
 			    <ion-item-group>
 			        <ion-item >
 			          <ion-label (click)="ViewChangepassword()"><ion-icon name="key"></ion-icon> Change password</ion-label>
 			        </ion-item>
-			      </ion-item-group>
+		      	</ion-item-group>
 			</ion-grid>	
 	 	</ion-card-content>
 	</ion-card>

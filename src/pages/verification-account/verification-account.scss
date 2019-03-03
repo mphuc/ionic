@@ -1,4 +1,4 @@
-page-setting {
+page-verification-account {
 	.border{
 		border:1px solid #eee;
 	}
@@ -90,9 +90,63 @@ page-setting {
 	}
 	.item-md{
 		color: #2b2b2b !important;
+		    margin-bottom: 20px;
 	}
 	.input-wrapper .label .icon{
 		padding-right: 15px;
 	}
-	
+	.img-camera-take{
+		width: 90%;
+		margin: 10px auto;
+	}
+	.button-default {
+	    padding: 19px !important;
+	    background: #4caf50 !important;
+	    margin-top: 22px;
+	    width: 80%;
+	    margin: 0 auto;
+	    border-radius: 20px;
+	}
+	.item-md.item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner, .item-md.item-input.ng-valid.input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner{
+	    box-shadow: none;
+	  }
+	  .item-md.item-input.item-input-has-focus .item-inner, .item-md.item-input.input-has-focus .item-inner{
+	    box-shadow: none;
+	  }
+	ion-input{
+	    border-bottom: 1px solid #eee;
+	    
+	    padding: 0px 10px;
+	    border-radius: 5px;
+	}
+	.item-ios{
+      margin-bottom: 15px;
+    }
+	.item-inner{
+		border: none !important;
+	}
+	ion-label{
+		font-size: 16px !important;
+	}
+	.text-input::-moz-placeholder {
+	  color: #222;
+	}
+
+	.text-input:-ms-input-placeholder {
+	  color: #222;
+	}
+
+	.text-input::-webkit-input-placeholder {
+	  text-indent: 0;
+	  color: #222;
+	}
+	.item-input-has-focus .label-md[stacked], .input-has-focus .label-md[stacked], .item-input-has-focus .label-md[floating], .input-has-focus .label-md[floating]{
+		color: #4CAF50
+	}
+	.button_camera{ 
+		width: auto;
+	    background: #FF5722 !important;
+	    margin-top: 15px;
+	    margin-bottom: 10px;
+	}
 }
