@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams,InfiniteScroll,Refresher } from 'ionic-angular';
-import { LoginPage } from '../login/login';
-import { HomePage } from '../home/home';
+
 import { Storage } from '@ionic/storage';
 import { LoadingController } from 'ionic-angular';
 import { ExchangeServerProvider } from '../../providers/exchange-server/exchange-server';
@@ -91,10 +90,6 @@ export class ProfitHistoryPage {
 				}
 			}
 			refresher.complete();
-			
         })
-
-        
-       
   	}
 }

@@ -141,4 +141,8 @@ page-support {
 	.list-ios > .item-block:last-child, .list-ios > .item-wrapper:last-child .item-block{
 		border: none;
 	}
+	.list-md .item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus):last-child, .list-md .item-input.ng-valid.input-has-value:not(.input-has-focus):not(.item-input-has-focus):last-child{
+		border:none !important;
+		box-shadow: none !important;
+	}
 }

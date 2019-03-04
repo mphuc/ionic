@@ -7,7 +7,7 @@ import { HomePage } from '../home/home';
 import { Storage } from '@ionic/storage';
 import { LoadingController } from 'ionic-angular';
 import { ReffralServerProvider } from '../../providers/reffral-server/reffral-server';
-import { Camera, CameraOptions } from '@ionic-native/camera';
+import { Camera } from '@ionic-native/camera';//CameraOptions
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
 import { RegisterServerProvider } from '../../providers/register-server/register-server';
 /**

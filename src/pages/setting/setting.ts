@@ -11,7 +11,7 @@ import { CreatepinPage } from '../createpin/createpin';
 import { Storage } from '@ionic/storage';
 import { LoadingController } from 'ionic-angular';
 import { ReffralServerProvider } from '../../providers/reffral-server/reffral-server';
-import { Camera, CameraOptions } from '@ionic-native/camera';
+import { Camera } from '@ionic-native/camera';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
 /**
  * Generated class for the SettingPage page.

@@ -6,7 +6,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { HomePage } from '../pages/home/home';
 
 import { LoginPage } from '../pages/login/login';
-import { RegisterPage } from '../pages/register/register';
+//import { RegisterPage } from '../pages/register/register';
 //import { ForgotPasswordPage } from '../pages/forgot-password/forgot-password';
 import { DepositPage } from '../pages/deposit/deposit';
 import { WithdrawPage } from '../pages/withdraw/withdraw';
@@ -18,11 +18,11 @@ import { InvestmentPage } from '../pages/investment/investment';
 import { TransactionHistoryPage } from '../pages/transaction-history/transaction-history';
 import { SupportPage } from '../pages/support/support';
 import { SettingPage } from '../pages/setting/setting';
-import { VerificationAccountPage } from '../pages/verification-account/verification-account';
+//import { VerificationAccountPage } from '../pages/verification-account/verification-account';
 //import { LogoutPage } from '../pages/logout/logout';
 //import { ChangePasswordPage } from '../pages/change-password/change-password';
 //import { DetailWithdrawPage } from '../pages/detail-withdraw/detail-withdraw';
-import { ProfitHistoryPage } from '../pages/profit-history/profit-history';
+//import { ProfitHistoryPage } from '../pages/profit-history/profit-history';
 
 import { LockPage } from '../pages/lock/lock';
 //import { ActiveCodePage } from '../pages/active-code/active-code';

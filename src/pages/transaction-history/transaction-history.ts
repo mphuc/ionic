@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,InfiniteScroll } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,InfiniteScroll,Refresher } from 'ionic-angular';
 import { LoginPage } from '../login/login';
 import { HomePage } from '../home/home';
 import { Storage } from '@ionic/storage';
@@ -120,4 +120,18 @@ export class TransactionHistoryPage {
 	goback() {
 		this.navCtrl.setRoot(HomePage);
 	}
+	doRefresh(refresher: Refresher) {
+
+		this.ExchangeServer.GetHisroryTransaction(this.customer_id,0,20)
+        .subscribe((data) => {
+			if (data)
+			{
+				
+		  		this.history =  data;
+		  		this.history_temp = data;
+		  		this.count_history = data.length;
+			}
+			refresher.complete();
+        })
+  	}
 }

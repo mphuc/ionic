@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,InfiniteScroll,ToastController ,Platform ,AlertController} from 'ionic-angular';
+import { IonicPage, NavController, NavParams,InfiniteScroll,ToastController ,Platform ,AlertController,Refresher} from 'ionic-angular';
 import { HomePage } from '../home/home';
 import { LoginPage } from '../login/login';
 import { Storage } from '@ionic/storage';
@@ -288,7 +288,8 @@ export class DepositPage {
   	DepositSTO(){
   		if (this.tab['STO'] == false)
   		{
-	  		let loading = this.loadingCtrl.create({
+  			this.AlertToast('The system is updating');
+	  		/*let loading = this.loadingCtrl.create({
 			    content: 'Please wait...'
 		  	});
 		  	loading.present();
@@ -304,6 +305,8 @@ export class DepositPage {
 			  		this.tab['XRP'] = false;
 			  		this.tab['STO'] = true;
 			  		this.address = data.address;
+
+
 				}
 				else
 				{
@@ -316,8 +319,18 @@ export class DepositPage {
 	        		loading.dismiss();
 	        		this.SeverNotLogin();
 	        	}
-	        })
+	        })*/
 	    }
+  	}
+
+  	AlertToast(message) {
+	    let toast = this.toastCtrl.create({
+	      message: message,
+	      position: 'top',
+	      duration : 3000,
+	      cssClass : 'error-submitform'
+	    });
+	    toast.present();
   	}
 
   	goback() {
@@ -372,9 +385,9 @@ export class DepositPage {
 			console.log(resolve);
 			let toast = this.toastCtrl.create({
 				message: 'The wallet address has been successfully coppy',
-				position: 'bottom',
+				position: 'top',
 				duration : 2000,
-				cssClass : 'errorqrcode'
+				cssClass : 'alert_success'
 			});
 			toast.present();
 		},
@@ -404,5 +417,33 @@ export class DepositPage {
 		]
 		});
 		confirm.present();
+  	}
+
+
+  	doRefresh(refresher: Refresher) {
+  		this.DepositServer.GetUser(this.customer_id)
+        .subscribe((data) => {
+        	
+			if (data.status == 'complete')
+			{
+				this.balance['btc_balance'] = (parseFloat(data.btc_balance)/100000000).toFixed(8);
+				this.balance['eth_balance'] = (parseFloat(data.eth_balance)/100000000).toFixed(8);
+				this.balance['usdt_balance'] = (parseFloat(data.usdt_balance)/100000000).toFixed(8);
+				this.balance['coin_balance'] = (parseFloat(data.coin_balance)/100000000).toFixed(8);
+				this.balance['xrp_balance'] = (parseFloat(data.xrp_balance)/100000000).toFixed(8);
+				this.balance['ltc_balance'] = (parseFloat(data.ltc_balance)/100000000).toFixed(8);
+			}
+			this.DepositServer.GetHisroryDeposit(this.customer_id,0,5)
+	        .subscribe((data) => {
+				if (data)
+				{
+					
+			  		this.history =  data;
+			  		this.count_history = data.length;
+				}
+				refresher.complete();
+	        })
+        })
+
   	}
 }

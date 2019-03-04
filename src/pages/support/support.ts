@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,InfiniteScroll,ToastController ,AlertController,Platform} from 'ionic-angular';
+import { IonicPage, NavController, NavParams,InfiniteScroll,Refresher,ToastController ,AlertController,Platform} from 'ionic-angular';
 import { LoginPage } from '../login/login';
 import { HomePage } from '../home/home';
 import { SupportDetailPage } from '../support-detail/support-detail';
@@ -204,4 +204,20 @@ export class SupportPage {
 	ViewDetailSupport(_id){
 		this.navCtrl.push(SupportDetailPage,{'_id' : _id});
 	}
+
+
+	doRefresh(refresher: Refresher) {
+		
+		this.ExchangeServer.GetHisrorySupport(this.customer_id,0,5)
+        .subscribe((data) => {
+			if (data)
+			{
+				
+		  		this.history =  data;
+		  		this.count_history = data.length;
+			}
+			refresher.complete();
+        })
+        
+  	}
 }

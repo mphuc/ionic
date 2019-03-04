@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,InfiniteScroll,ToastController ,AlertController} from 'ionic-angular';
+import { IonicPage, NavController, NavParams,InfiniteScroll,ToastController ,AlertController,Refresher} from 'ionic-angular';
 import { LoginPage } from '../login/login';
 import { HomePage } from '../home/home';
 import { ProfitHistoryPage } from '../profit-history/profit-history';
@@ -350,5 +350,62 @@ export class InvestmentPage {
 	      cssClass : 'error-submitform'
 	    });
 	    toast.present();
+  	}
+  	doRefresh(refresher: Refresher) {
+
+  		this.DepositServer.GetUser(this.customer_id)
+        .subscribe((data) => {
+        	
+			if (data.status == 'complete')
+			{
+				this.balance['btc_balance'] = (parseFloat(data.btc_balance)/100000000).toFixed(8);
+				this.balance['eth_balance'] = (parseFloat(data.eth_balance)/100000000).toFixed(8);
+				this.balance['usdt_balance'] = (parseFloat(data.usdt_balance)/100000000).toFixed(8);
+				this.balance['coin_balance'] = (parseFloat(data.coin_balance)/100000000).toFixed(8);
+				this.balance['xrp_balance'] = (parseFloat(data.xrp_balance)/100000000).toFixed(8);
+				this.balance['ltc_balance'] = (parseFloat(data.ltc_balance)/100000000).toFixed(8);
+			
+
+			}
+
+			this.ExchangeServer.LoadPrice()
+	        .subscribe((data) => {
+				if (data.status == 'complete')
+				{
+					this.price_coin['btc_usd'] = data.btc_usd;
+					this.price_coin['eth_usd'] = data.eth_usd;
+					this.price_coin['ltc_usd'] = data.ltc_usd;
+					this.price_coin['xrp_usd'] = data.xrp_usd;
+					this.price_coin['coin_usd'] = data.coin_usd;
+					this.price_coin['usdt_usd'] = data.usdt_usd;
+
+				
+
+				}
+
+				this.ReffralServer.GetInfomationUser(this.customer_id)
+		        .subscribe((data) => {
+		        	
+					if (data.status == 'complete')
+					{
+				  		this.invest_wallet =  data;
+
+				  		
+					}
+
+					this.ExchangeServer.GetHisroryInvestment(this.customer_id,0,5)
+			        .subscribe((data) => {
+						if (data)
+						{
+							
+					  		this.history =  data;
+					  		this.count_history = data.length;
+						}
+						refresher.complete();
+			        })
+					
+		        })
+	        })
+        })
   	}
 }

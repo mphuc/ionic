@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,InfiniteScroll } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,InfiniteScroll ,Refresher} from 'ionic-angular';
 import { LoginPage } from '../login/login';
 import { HomePage } from '../home/home';
 import { UserDetailPage } from '../user-detail/user-detail';
@@ -108,4 +108,26 @@ export class ReffralPage {
 	ViewInfomationUser(customer_id){
 		this.navCtrl.push(UserDetailPage,{'customer_id' : customer_id});
 	}
+
+	doRefresh(refresher: Refresher) {
+
+		this.ReffralServer.GetInfomationUser(this.customer_id)
+        .subscribe((data) => {
+        	
+			if (data.status == 'complete')
+			{
+		  		this.email =  data.email;
+			}
+			this.ReffralServer.GetMember(this.customer_id,0,5)
+	        .subscribe((data) => {
+				if (data)
+				{
+					
+			  		this.history =  data;
+			  		this.count_history = data.length;
+				}
+				refresher.complete();
+	        })
+        })
+  	}
 }

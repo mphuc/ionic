@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,InfiniteScroll } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,InfiniteScroll ,Refresher} from 'ionic-angular';
 import { LoginPage } from '../login/login';
-import { HomePage } from '../home/home';
+
 import { NotificationDetaiPage } from '../notification-detai/notification-detai';
 import { Storage } from '@ionic/storage';
 import { LoadingController } from 'ionic-angular';
@@ -94,4 +94,19 @@ export class NotificationPage {
 	ViewDetailNotification(_id){
 		this.navCtrl.push(NotificationDetaiPage,{'_id' : _id});
 	}
+
+	doRefresh(refresher: Refresher) {
+		this.ExchangeServer.GetListNotification(this.customer_id,0,20)
+        .subscribe((data) => {
+			if (data)
+			{
+				
+		  		this.history =  data;
+		  		this.count_history = data.length;
+			}
+			refresher.complete();
+        })
+
+		
+  	}
 }

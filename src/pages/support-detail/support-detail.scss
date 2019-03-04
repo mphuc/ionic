@@ -163,4 +163,8 @@ page-support-detail {
 	ion-row.border-bottom:last-child{
 		border-bottom: none;
 	}
+	.list-md .item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus):last-child, .list-md .item-input.ng-valid.input-has-value:not(.input-has-focus):not(.item-input-has-focus):last-child{
+		border:none !important;
+		box-shadow: none !important;
+	}
 }

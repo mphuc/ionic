@@ -14,6 +14,9 @@
 
 
 <ion-content>
+	<ion-refresher (ionRefresh)="doRefresh($event)">
+    	<ion-refresher-content></ion-refresher-content>
+  	</ion-refresher>
 	<ion-card>
 		<ion-card-content>
 			<h1 style="padding: 5px; margin-bottom: 15px;">{{history.subject}}</h1>
@@ -35,13 +38,13 @@
 	          		<p style="color: #5f5d5d; font-size: 14px;" text-center>Mine</p>
 	          	</ion-col>
 	          	<ion-col col-9 *ngIf="item.user_id != 'admin'" class="message_support">
-          			<p style="margin-bottom: 20px;">{{item.message}}</p>
+          			<p style="margin-bottom: 20px;"  [innerHTML]="item.message"></p>
           			<p class="date_support right" text-right>{{item.date_added}}</p>
 	          	</ion-col>
 
 
 	          	<ion-col col-9 text-right *ngIf="item.user_id == 'admin'" class="message_support">
-          			<p style="margin-bottom: 20px;">{{item.message}}</p>
+          			<p style="margin-bottom: 20px;" [innerHTML]="item.message"></p>
           			<p class="date_support left" text-left>{{item.date_added}}</p>
 	          	</ion-col>
 	          	<ion-col col-3 *ngIf="item.user_id == 'admin'">
