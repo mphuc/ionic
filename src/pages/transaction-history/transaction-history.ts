@@ -80,8 +80,9 @@ export class TransactionHistoryPage {
 				  		"username" : item.username,
 				        "amount" : item.amount,
 				        "type" : item.type,
-				        
-				        "date_added" : item.date_added
+				        "currency" : item.currency,
+				        "date_added" : item.date_added,
+				        "detail" : item.detail
 				  	})
 				}
 				this.history_temp = this.history;

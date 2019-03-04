@@ -30,8 +30,13 @@
 		          		<span float-left><span class="iconstatus " [ngClass]="{'finish_withdraw': item.status === 1}"></span> {{item.type}}</span>
 		          	</ion-col>
 		          	<ion-col col-6>
-		          			<span float-right class="amount">+{{item.amount}}  {{item.currency}} </span>
+		          			<span float-right class="amount">+{{item.amount}}   {{item.currency}} </span>
 		          		
+		          	</ion-col>
+		        </ion-row>
+		        <ion-row>
+		        	<ion-col col-12>
+		          		<p class="detail">{{item.detail}}</p>
 		          	</ion-col>
 		        </ion-row>
 		        <ion-row>

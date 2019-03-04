@@ -66,6 +66,8 @@ export class ProfitHistoryPage {
 				  		"username" : item.username,
 				        "amount" : item.amount,
 				        "type" : item.type,
+				        "currency" : item.currency,
+				        "detail" : item.detail,
 				        "date_added" : item.date_added
 				  	})
 				}
@@ -76,19 +78,16 @@ export class ProfitHistoryPage {
 	}
 
 	doRefresh(refresher: Refresher) {
-    	this.ExchangeServer.GetHisroryProfit(this.customer_id,this.name_history,this.history.length,20)
+
+		this.ExchangeServer.GetHisroryProfit(this.customer_id,this.name_history,0,20)
         .subscribe((data) => {
-			if (data.length > 0)
+			if (data)
 			{
-				for(let item of data) {
-				  	this.history.push({
-				  		"username" : item.username,
-				        "amount" : item.amount,
-				        "type" : item.type,
-				        "date_added" : item.date_added
-				  	})
-				}
+				
+		  		this.history =  data;
+		  		this.count_history = data.length;
 			}
+			
 			refresher.complete();
         })
   	}
