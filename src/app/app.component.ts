@@ -25,7 +25,7 @@ import { SettingPage } from '../pages/setting/setting';
 //import { ProfitHistoryPage } from '../pages/profit-history/profit-history';
 
 import { LockPage } from '../pages/lock/lock';
-//import { ActiveCodePage } from '../pages/active-code/active-code';
+import { ActiveCodePage } from '../pages/active-code/active-code';
 import { Network } from '@ionic-native/network';
 import { Storage } from '@ionic/storage';
 import { ReffralServerProvider } from '../providers/reffral-server/reffral-server';
@@ -113,28 +113,33 @@ export class MyApp {
 
       //2 back exit ap
       
-
+      let pree_back = false;
       this.platform.registerBackButtonAction(() => {
-        const confirm = this.alertCtrl.create({
-        title: 'Confirm Exit?',
-        message: 'Are you sure to exit the application',
-        buttons: [
-          {
-            text: 'Cancel',
-            handler: () => {
-              console.log('Disagree clicked');
+
+        if (pree_back == false)
+        {
+          pree_back = true;
+          const confirm = this.alertCtrl.create({
+          title: 'Confirm Exit?',
+          message: 'Are you sure to exit the application',
+          buttons: [
+            {
+              text: 'Cancel',
+              handler: () => {
+                pree_back = false;
+              }
+            },
+            {
+              text: 'Exit',
+              handler: () => {
+                this.platform.exitApp();
+              }
             }
-          },
-          {
-            text: 'Exit',
-            handler: () => {
-              this.platform.exitApp();
-              //navigator['app'].exitApp(); 
-            }
-          }
-        ]
-      });
-      confirm.present();          
+          ]
+        });
+        confirm.present();
+        }
+                  
       });
       
 
@@ -168,16 +173,29 @@ export class MyApp {
       .then((customer_id) => {
         
         if (customer_id) {
-          this.storage.get('StatusPinStorage')
-            .then((StatusPinStorage) => {
-            if (!StatusPinStorage || StatusPinStorage == 'false') {
-              this.rootPage = HomePage;
+          this.storage.get('active_code')
+            .then((active_code) => {
+            if (active_code) 
+            {
+              this.rootPage = ActiveCodePage;
             }
             else
             {
-              this.rootPage = LockPage;
+              this.storage.get('StatusPinStorage')
+                .then((StatusPinStorage) => {
+                if (!StatusPinStorage || StatusPinStorage == 'false') {
+                  this.rootPage = HomePage;
+                }
+                else
+                {
+                  this.rootPage = LockPage;
+                }
+              }); 
             }
-          }); 
+          })
+
+
+              
         }
         this.platformReady()
       });

@@ -21,7 +21,8 @@ import { Storage } from '@ionic/storage';
 export class ActiveCodePage {
 	form = {};
 	validateform = true;
-	errorlog = '';
+	customer_id :any;
+	resencode = true;
 	constructor(
 		public navCtrl: NavController, 
 		public navParams: NavParams,
@@ -37,7 +38,13 @@ export class ActiveCodePage {
 	}
 
 	ionViewDidLoad() {
-		console.log('ionViewDidLoad ActiveCodePage');
+		this.storage.get('customer_id')
+			.then((customer_id) => {
+			if (customer_id) 
+			{
+				this.customer_id = customer_id;
+			}
+		})
 	}
 
 
@@ -53,27 +60,22 @@ export class ActiveCodePage {
 
 		  	loading.present();
 
-		  	let email = this.navParams.get("email");
-		  	
-			this.RegisterServer.ActiveCode(this.form['code'],email)
+		  	this.RegisterServer.ActiveCode(this.form['code'],this.customer_id)
 	        .subscribe((data) => {
 				if (data.status == 'complete')
 				{
 					loading.dismiss();
 					let alert = this.alertCtrl.create({
 						title: 'Notification',
-						subTitle: 'Account activated successfully.',
-						cssClass : 'customer-alertctrl',
+						message: 'Account activated successfully.',
 						buttons: ['Ok']
 					});
 					alert.present();
 
 					alert.onDidDismiss(() => {
-						this.storage.set('customer_id', data.customer_id); 
-					    this.navCtrl.setRoot(HomePage);
+						this.storage.remove('active_code');
+						this.navCtrl.setRoot(HomePage);
 				  	});
-
-					
 				}
 				else
 				{
@@ -98,24 +100,32 @@ export class ActiveCodePage {
 
 
 	onResendCode(){
-		let email = this.navParams.get("email");
+		this.resencode = false;
 		let loading = this.loadingCtrl.create({
 		    content: 'Please wait...'
 	  	});
 
 	  	loading.present();
-		this.RegisterServer.ResendCode(email)
+	  	
+		this.RegisterServer.ResendCode(this.customer_id)
         .subscribe((data) => {
 			if (data.status == 'complete')
 			{
 				loading.dismiss();
 				
+    			let toast = this.toastCtrl.create({
+					message: 'The active code has been sent to your email address',
+					position: 'top',
+					duration : 2000,
+					cssClass : 'alert_success'
+				});
+				toast.present();
 			}
 			else
 			{
 				loading.dismiss();
-				this.validateform = false;
-				this.errorlog = 'Error Network';
+				this.AlertToast('Error Network');
+				
 			}
         },
         (err) => {

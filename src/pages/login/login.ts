@@ -7,6 +7,7 @@ import { Storage } from '@ionic/storage';
 import { HomePage } from '../home/home';
 import { RegisterPage } from '../register/register';
 import { ForgotPasswordPage } from '../forgot-password/forgot-password';
+import { ActiveCodePage } from '../active-code/active-code';
 /**
  * Generated class for the LoginPage page.
  *
@@ -88,6 +89,12 @@ export class LoginPage {
 					}
 					else
 					{
+						if (data.status = 'error_active_email')
+						{
+							this.storage.set('customer_id', data.customer_id); 
+							this.storage.set('active_code', 'not-active'); 
+							this.navCtrl.push(ActiveCodePage);
+						}
 						loading.dismiss();
 						this.AlertToast(data.message);
 					}

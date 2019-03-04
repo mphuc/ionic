@@ -28,8 +28,8 @@ export class RegisterServerProvider {
       .catch(this.catchError)
     }
 
-    ActiveCode(code: string,email: string){
-      let body = {code: code,email: email };
+    ActiveCode(code: string,customer_id: string){
+      let body = {code: code,customer_id: customer_id };
       return this.http.post(MyConfig.data.url+'/api/active-code',body)
       .do(this.logResponse)
       .map(this.extractData)
@@ -59,8 +59,8 @@ export class RegisterServerProvider {
       .catch(this.catchError)
     }
 
-    ResendCode(email: string){
-      let body = {email: email};
+    ResendCode(customer_id: string){
+      let body = {customer_id: customer_id};
       return this.http.post(MyConfig.data.url+'/api/resend-code',body)
       .do(this.logResponse)
       .map(this.extractData)

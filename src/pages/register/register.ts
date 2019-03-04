@@ -5,6 +5,7 @@ import { LoginPage } from '../login/login';
 import { ActiveCodePage } from '../active-code/active-code';
 import { LoadingController } from 'ionic-angular';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
+import { Storage } from '@ionic/storage';
 /**
  * Generated class for the RegisterPage page.
  *
@@ -30,6 +31,7 @@ export class RegisterPage {
 		public toastCtrl: ToastController,
 		public platform: Platform,
 		public alertCtrl: AlertController,
+		public storage: Storage,
 	) 
 	{
 
@@ -71,7 +73,9 @@ export class RegisterPage {
 					{
 						loading.dismiss();
 						
-						this.navCtrl.push(ActiveCodePage,{email : this.form['email']});
+						this.storage.set('customer_id', data.customer_id); 
+						this.storage.set('active_code', 'not-active'); 
+						this.navCtrl.push(ActiveCodePage);
 					}
 					else
 					{

@@ -57,8 +57,8 @@ export class ForgotPasswordPage {
 					loading.dismiss();
 					let alert = this.alertCtrl.create({
 						title: 'Notification',
-						subTitle: 'We have sent a link to your email. Please click on the link in the email to get the password.',
-						cssClass : 'customer-alertctrl',
+						message: 'Your new password is sent to your email address.',
+						
 						buttons: ['Ok']
 					});
 					alert.present();
