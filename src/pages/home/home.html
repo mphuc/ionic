@@ -4,7 +4,10 @@
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title float-left>Dashboard</ion-title>
-    <ion-icon (click) = "goNotificationPage()" class="notifications" float-right name="notifications-outline"></ion-icon>
+    <div class="notifications_div">
+      <ion-icon (click) = "goNotificationPage()" class="notifications" float-right name="notifications-outline"></ion-icon>
+      <span (click) = "goNotificationPage()" *ngIf="count_notifications > 0">{{count_notifications}}</span>
+    </div>
   </ion-navbar>
 </ion-header>
 

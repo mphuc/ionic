@@ -126,7 +126,8 @@ page-withdraw {
 		margin: 0px;
 	    width: calc(100% - 0px);
 	    padding: 10px;
-	    background: #4CAF50;
+	    background: url(../assets/imgs/trans-bg2.png) no-repeat center;
+    	background-size: cover;
 	}
 	.crad-exchange .card-title{
 		text-align: center;
@@ -213,6 +214,13 @@ page-withdraw {
 	.amount_estimate .text-input,.amount_estimate .text-input::-moz-placeholder,.amount_estimate .text-input:-ms-input-placeholder,.amount_estimate .text-input::-webkit-input-placeholder{
 		color: #cecdcd !important;
 		display: none;
+	}
+	.qr-scanner{
+	    position: absolute;
+	    top: 23px;
+	    right: 5px;
+	    font-size: 30px;
+	    color: #fff;
 	}
 }
 .input-readonly{

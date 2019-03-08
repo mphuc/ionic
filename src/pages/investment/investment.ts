@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams,InfiniteScroll,ToastController ,Ale
 import { LoginPage } from '../login/login';
 import { HomePage } from '../home/home';
 import { ProfitHistoryPage } from '../profit-history/profit-history';
+import { DialingPage } from '../dialing/dialing';
 
 import { Storage } from '@ionic/storage';
 import { LoadingController } from 'ionic-angular';
@@ -28,7 +29,8 @@ export class InvestmentPage {
 	form = {};
 	customer_id :any;
 	history : any;
-	count_history = 0;
+	count_history = 0; 
+	number_dialing = 0;
   constructor(public navCtrl: NavController, 
 		public navParams: NavParams,
 		public DepositServer : DepositServerProvider,
@@ -53,7 +55,14 @@ export class InvestmentPage {
 			  	});
 			  	loading.present();
 
-			  	
+			  	this.ExchangeServer.GetNumberDialing(this.customer_id)
+		        .subscribe((data) => {
+					if (data)
+					{
+						this.number_dialing = data.number_dialing;
+					}
+					
+		        })
 
 			  	this.DepositServer.GetUser(this.customer_id)
 		        .subscribe((data) => {
@@ -244,7 +253,7 @@ export class InvestmentPage {
 					price_altcoin = this.price_coin['coin_usd'];
 				}
 
-				let amount_estimate = price_altcoin* parseFloat(value);
+				let amount_estimate = (price_altcoin* parseFloat(value)).toFixed(8);
 				
 				this.form['amount_estimate'] = amount_estimate;
 				
@@ -288,6 +297,14 @@ export class InvestmentPage {
 	}
 
 	reLoadPage(){
+		this.ExchangeServer.GetNumberDialing(this.customer_id)
+        .subscribe((data) => {
+			if (data)
+			{
+				this.number_dialing = data.number_dialing;
+			}
+			
+        })
 		this.DepositServer.GetUser(this.customer_id)
         .subscribe((data) => {
         	
@@ -322,6 +339,12 @@ export class InvestmentPage {
 		this.navCtrl.push(ProfitHistoryPage,{'name_history' : name_history,'customer_id' : this.customer_id});
 	}
 
+	ViewDialing()
+	{
+		this.number_dialing = (this.number_dialing) - 1;
+		this.navCtrl.push(DialingPage);
+	}
+
 	doInfinite(infiniteScroll : InfiniteScroll) {
 	  	this.ExchangeServer.GetHisroryInvestment(this.customer_id,this.history.length,5)
         .subscribe((data) => {
@@ -352,7 +375,14 @@ export class InvestmentPage {
 	    toast.present();
   	}
   	doRefresh(refresher: Refresher) {
-
+  		this.ExchangeServer.GetNumberDialing(this.customer_id)
+        .subscribe((data) => {
+			if (data)
+			{
+				this.number_dialing = data.number_dialing;
+			}
+			
+        })
   		this.DepositServer.GetUser(this.customer_id)
         .subscribe((data) => {
         	
@@ -401,6 +431,9 @@ export class InvestmentPage {
 					  		this.history =  data;
 					  		this.count_history = data.length;
 						}
+
+
+
 						refresher.complete();
 			        })
 					

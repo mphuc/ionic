@@ -20,37 +20,45 @@
 
 	    </ion-card-header>
 	    <ion-card-content>
-	    	<ion-grid style="border-bottom: 1px solid #eee;">
-				<ion-row text-center>
+	    	<ion-grid *ngIf="infomation.verification == 2">
+				<ion-row text-center >
 					<ion-col col-12 text-center>
-						<h2>Passport fontside</h2>
-						
-						<button class="button_camera" *ngIf="img_passport_fontside == '' && infomation.img_passport_fontside == '' "  ion-button color="danger" (click)="open_camera_passport_fontside()" icon-left><ion-icon name="camera"></ion-icon> Take Picture</button>
+						<p style="padding: 10px; background: #4CAF50; border-radius: 5px; color: #fff;">Successful Verification Account.</p>
+					</ion-col>
+				</ion-row>
+			</ion-grid>
+	    	<ion-grid style="border-bottom: 1px solid #eee;">
+				<ion-row text-center class="border-verify">
+					<ion-col col-12 text-center>
+						<img *ngIf="img_passport_fontside == '' && infomation.img_passport_fontside == '' " class="img-camera-take" src="assets/imgs/fontside.png" (click)="open_camera_passport_fontside()" />
 						<img *ngIf="img_passport_fontside != '' && infomation.img_passport_fontside == ''" src="{{img_passport_fontside}}" class="img-camera-take" />
 						<img *ngIf="img_passport_fontside == '' && infomation.img_passport_fontside != ''" src="{{infomation.img_passport_fontside}}" class="img-camera-take" />
+						<h2>Upload front of identity card or Passport</h2>
 					</ion-col>
 				</ion-row>
 			</ion-grid>
 	    	
 	    	<ion-grid style="border-bottom: 1px solid #eee;">
-				<ion-row text-center>
+				<ion-row text-center class="border-verify">
 					<ion-col col-12 text-center>
-						<h2>Passport backside</h2>
-						<button class="button_camera" *ngIf="img_passport_backside == '' && infomation.img_passport_backside == '' " ion-button color="danger" (click)="open_camera_passport_backside()" icon-left><ion-icon name="camera"></ion-icon> Take Picture</button>
+						<img (click)="open_camera_passport_backside()" *ngIf="img_passport_backside == '' && infomation.img_passport_backside == '' " class="img-camera-take" src="assets/imgs/backside.png"/>
+						
 						<img *ngIf="img_passport_backside != '' && infomation.img_passport_backside == ''" src="{{img_passport_backside}}" class="img-camera-take" />
 
 						<img *ngIf="img_passport_backside == '' && infomation.img_passport_backside != ''" src="{{infomation.img_passport_backside}}" class="img-camera-take" />
+						<h2>Upload back of identity card or Passport</h2>
 					</ion-col>
 				</ion-row>
 			</ion-grid>
 
 			<ion-grid >
-				<ion-row text-center>
+				<ion-row text-center class="border-verify">
 					<ion-col col-12 text-center>
-						<h2>Picture Address</h2>
-						<button class="button_camera" *ngIf="img_address == '' && infomation.img_address == '' " ion-button color="danger" (click)="open_camera_address()" icon-left><ion-icon name="camera"></ion-icon> Take Picture</button>
+						<img (click)="open_camera_address()" *ngIf="img_address == '' && infomation.img_address == '' " class="img-camera-take" src="assets/imgs/addresss.png" />
+						
 						<img *ngIf="img_address != '' && infomation.img_address == ''" src="{{img_address}}" class="img-camera-take" />
 						<img *ngIf="img_address == '' && infomation.img_address != ''" src="{{infomation.img_address}}" class="img-camera-take" />
+						<h2>Picture of yourself holding Photo ID</h2>
 					</ion-col>
 				</ion-row>
 			</ion-grid>

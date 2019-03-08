@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform, AlertController } from 'ionic-angular';
+import { Nav, Platform, AlertController ,ToastController} from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -23,6 +23,7 @@ import { SettingPage } from '../pages/setting/setting';
 //import { ChangePasswordPage } from '../pages/change-password/change-password';
 //import { DetailWithdrawPage } from '../pages/detail-withdraw/detail-withdraw';
 //import { ProfitHistoryPage } from '../pages/profit-history/profit-history';
+//import { DialingPage } from '../pages/dialing/dialing';
 
 import { LockPage } from '../pages/lock/lock';
 import { ActiveCodePage } from '../pages/active-code/active-code';
@@ -30,7 +31,7 @@ import { Network } from '@ionic-native/network';
 import { Storage } from '@ionic/storage';
 import { ReffralServerProvider } from '../providers/reffral-server/reffral-server';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
-
+ 
 @Component({
   templateUrl: 'app.html'
 })
@@ -41,6 +42,7 @@ export class MyApp {
   infomation : any = {};
   customer_id : any = '';
   versionApp : any;
+  counter=0;
   pages: Array<{title: string, component: any, icon : string}>;
 
   constructor(public platform: Platform, 
@@ -50,7 +52,8 @@ export class MyApp {
     public alertCtrl: AlertController,
     public storage: Storage,
     public ReffralServer: ReffralServerProvider,
-    private iab: InAppBrowser
+    private iab: InAppBrowser,
+    public toastCtrl: ToastController
     ) {
 
     this.versionApp = 1;
@@ -69,25 +72,6 @@ export class MyApp {
       { title: 'Setting', component: SettingPage, icon : 'settings' }
     ];
 
-    this.storage.get('customer_id')
-    .then((customer_id) => {
-      this.ReffralServer.GetInfomationUser(customer_id)
-        .subscribe((data) => {
-        if (data.status == 'complete')
-        {
-            this.infomation['email'] =  data.email;
-            this.infomation['date_added'] =  data.date_added;
-            this.infomation['investment'] =  data.investment;
-            this.infomation['img_profile'] =  data.img_profile;
-        }
-      },
-      (err) => {
-        if (err)
-        {
-          this.SeverNotLogin();
-        }
-      })
-    });
     // get version
     
     this.ReffralServer.GetVersionApp()
@@ -115,31 +99,38 @@ export class MyApp {
       
       let pree_back = false;
       this.platform.registerBackButtonAction(() => {
-
-        if (pree_back == false)
-        {
-          pree_back = true;
-          const confirm = this.alertCtrl.create({
-          title: 'Confirm Exit?',
-          message: 'Are you sure to exit the application',
-          buttons: [
-            {
-              text: 'Cancel',
-              handler: () => {
-                pree_back = false;
+        if (this.counter == 0) {
+          this.counter++;
+          if (pree_back == false)
+          {
+            this.presentToast();
+          }
+          setTimeout(() => { this.counter = 0 }, 1500)
+        } else {
+          if (pree_back == false)
+          {
+            pree_back = true;
+            const confirm = this.alertCtrl.create({
+            title: 'Confirm Exit?',
+            message: 'Are you sure to exit the application',
+            buttons: [
+              {
+                text: 'Cancel',
+                handler: () => {
+                  pree_back = false;
+                }
+              },
+              {
+                text: 'Exit',
+                handler: () => {
+                  this.platform.exitApp();
+                }
               }
-            },
-            {
-              text: 'Exit',
-              handler: () => {
-                this.platform.exitApp();
-              }
-            }
-          ]
-        });
-        confirm.present();
-        }
-                  
+            ]
+          });
+          confirm.present();
+          }
+        }       
       });
       
 
@@ -279,7 +270,14 @@ export class MyApp {
     confirm.present();
   }
 
-
+  presentToast() {
+    let toast = this.toastCtrl.create({
+      message: "Press again to exit",
+      duration: 3000,
+      position: "bottom"
+    });
+    toast.present();
+  }
     
   platformReady() {
     this.platform.ready().then(() => {

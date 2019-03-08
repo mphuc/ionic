@@ -1,4 +1,4 @@
-page-investment {
+page-dialing {
 	.border{
 		border:1px solid #eee;
 	}
@@ -60,9 +60,9 @@ page-investment {
 	    padding: 19px !important;
 	    background: #FF5722 !important;
 	    
-	    width: 80%;
+	    
 	    margin: 20px auto;
-	    margin-bottom: 10px;
+	    
 	    border-radius: 20px;
 	}
 	.text-error{
@@ -88,8 +88,7 @@ page-investment {
 		margin: 0px;
 	    width: calc(100% - 0px);
 	    padding: 10px;
-	    background: url(../assets/imgs/trans-bg2.png) no-repeat center;
-    	background-size: cover;
+	    background: #4CAF50;
 	}
 	.crad-exchange .card-title{
 		text-align: center;
@@ -178,8 +177,9 @@ page-investment {
 		display: none;
 	}
 	.wallet_invest ion-col{
-		background: url(../assets/imgs/dash-bg.jpg) no-repeat center;
-    	background-size: cover;
+		background: #009688;
+		border-radius: 5px;
+		margin: 2px;
 	}
 	.wallet_invest ion-col h4{
 		font-size: 12px;
@@ -190,20 +190,56 @@ page-investment {
 	 .wallet_invest ion-col h4{
 	 	font-size: 11px;
 	 }
-	.dialing_notifi{
-		background: rgba(76, 175, 80, 0.54);
-	    padding: 10px 14px;
-	    color: #191919;
-	    border-radius: 10px;
-	    font-size: 14px;
-	    text-align: center;
+	.iconstatus{
+		width: 10px;
+		height: 10px;
+		border-radius: 50%;
+		background: #FFC107;
+	    
+	    display: inline-block;
 	}
-	.dialing_notifi span{
+	.finish_withdraw{
+		background: #4caf50 !important;
+	}
+	.number_ramdom{
+		font-size: 150px;
+	    font-weight: bold;
+	    border: 5px solid #4caf50;
+	    border-radius: 10px;
+	    color: #fa583c;
+	}
+	.button-dialing{
+	    text-decoration: none;
+	    background: #ff8181;
+	    color: #FFF;
+	    /* width: 90px; */
+	    /* height: 90px; */
+	    width: 150px !important;
+	    line-height: 120px;
+	    /* border-radius: 50%; */
+	    text-align: center;
+	    font-weight: bold;
+	    vertical-align: middle;
+	    overflow: hidden;
+	    -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.29);
+	    box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.29);
+	    border-bottom: solid 3px #bd6565;
+	    -webkit-transition: .4s;
+	    transition: .4s;
+	    width: auto;
+	    /* float: left; */
+	    /* margin: 0 auto; */
+	}
 
-	    background: #4caf50;
-	    padding: 5px;
-	    border-radius: 5px;
-	    color: #fff;
-	    border: 1px solid #74a57d;
-    }
+	.button-dialing:active{
+	    -ms-transform: translateY(2px);
+	    -webkit-transform: translateY(2px);
+	    transform: translateY(2px);
+	    box-shadow: 0 0 1px rgba(0, 0, 0, 0.15);
+
+	}
+	.button-dialing.start{
+		background: #4caf50 !important;
+		border-bottom: solid 3px #337936;
+	}
 }

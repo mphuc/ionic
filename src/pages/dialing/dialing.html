@@ -1,0 +1,91 @@
+<!--
+  Generated template for the DialingPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Dialing</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+	<ion-refresher (ionRefresh)="doRefresh($event)">
+    	<ion-refresher-content></ion-refresher-content>
+  	</ion-refresher>
+  	<ion-card>
+		<ion-card-header>
+	        <ion-card-title>Electronic wallet</ion-card-title>
+	    </ion-card-header>
+	    <ion-card-content>
+	    	<ion-grid>
+				<ion-row text-center>
+					<ion-col text-center>
+						<h1 class="number_ramdom">{{number_radom}}</h1>
+						<p style="color: #F44336;">You have {{number_dialing}} turns</p>
+					</ion-col>
+				</ion-row>
+			</ion-grid>
+	    	<button class="button-dialing start" *ngIf="button == 'start'" ion-button full (click)="StartDialing()">Start</button>
+	    	<button class="button-dialing" *ngIf="button == 'stop'" ion-button full (click)="StopDialing()">Stop</button>
+	    	<button class="button-dialing" *ngIf="button == 'pedding'" ion-button full>Stop</button>
+	    </ion-card-content>
+	</ion-card>
+	<div class="clear_div"></div>
+
+	<ion-card>
+		<ion-card-header>
+	        <ion-card-title>History</ion-card-title>
+	    </ion-card-header>
+
+	    <ion-card-content>
+	    	<p text-center  *ngIf="count_history == 0">No data</p>
+	    	<ion-grid *ngIf="count_history > 0">
+		      	<ion-row >
+		          <ion-col col-5 style="border: 1px solid #eee;border-bottom: none; border-right: none;">
+		            <ion-label text-center>Date Create</ion-label>
+		          </ion-col>
+		          <ion-col col-3 style="border: 1px solid #eee;border-bottom: none; border-right: none;">
+		            <ion-label text-center>Package</ion-label>
+		          </ion-col>
+		            <ion-col col-2 style="border: 1px solid #eee;border-bottom: none;border-right: none;">
+		            <ion-label text-center>Coin </ion-label>
+		          </ion-col>
+		          
+		            <ion-col col-2 style="border: 1px solid #eee;border-bottom: none;">
+		            <ion-label text-center>Status</ion-label>
+		          </ion-col>
+		        </ion-row>
+		        	
+		        <ion-row style="border:1px solid #eee; font-size: 14px;" *ngFor="let item of history" >
+		          <ion-col col-5 style="border-right: 1px solid #eee;">
+		            <ion-label text-center>{{item.date_added}}</ion-label>
+		          </ion-col>
+		          <ion-col col-3 style="border-right: 1px solid #eee;">
+		            <ion-label text-center>{{item.package}}  {{item.currency}} 
+		            
+		            </ion-label>
+		          </ion-col>
+		           <ion-col col-2 style="" style="border-right: 1px solid #eee;">
+		            <ion-label text-center>{{item.amount_coin}}</ion-label>
+		          </ion-col>
+		          <ion-col col-2 style="" text-center>
+		            <ion-label text-center>
+		            <p text-center><span class="iconstatus " text-center [ngClass]="{'finish_withdraw': item.status === 1}"></span></p>
+		            
+		            </ion-label>
+		          </ion-col>
+		        </ion-row>
+
+		       	<ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+				   <ion-infinite-scroll-content></ion-infinite-scroll-content>
+				 </ion-infinite-scroll>
+			</ion-grid>
+	    </ion-card-content>
+
+	</ion-card>
+</ion-content>

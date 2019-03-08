@@ -84,7 +84,8 @@ page-exchange {
 		margin: 0px;
 	    width: calc(100% - 0px);
 	    padding: 10px;
-	    background: #4CAF50;
+	    background: url(../assets/imgs/trans-bg2.png) no-repeat center;
+    	background-size: cover;
 	}
 	.crad-exchange .card-title{
 		text-align: center;
@@ -98,7 +99,7 @@ page-exchange {
 		margin: 7px auto;
 	}
 	.crad-exchange .from_currency,.crad-exchange .to_currency{
-	    background: #429a45;
+	    background: #0f4e80;
 	    border-radius: 60px;
 	    color: #fff;
 	    width: 120px;
@@ -201,12 +202,14 @@ page-exchange {
 	}
 }
 .alert-wrapper .alert-head{
-	padding: 15px !important;
-	background: #4CAF50;
+	padding: 25px 15px 20px 15px!important;
+	background: url(../assets/imgs/dash-bg.jpg) no-repeat center;
+    background-size: cover;
 	color: #fff;
 }
 .alert-wrapper .alert-head .alert-title{
 	font-size: 20px;
+	font-weight: bold;
 }
 
 input, textarea {
@@ -242,10 +245,14 @@ input, textarea {
     margin-top: 15px !important;
 	overflow: hidden !important;
     border-bottom: 1px solid #eee;
+    color: #000;
+    text-align: center;
+    font-size: 13px;
+    font-weight: 490;
 }
 .select-alert .alert-message {
     margin-top: 0px !important;
 }
 .alert_success .toast-wrapper{
-	background: #02796e;
+	background: #4CAF50;
 }

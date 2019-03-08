@@ -1,22 +1,28 @@
 <ion-header>
    <ion-navbar>
-      <button  float-left class="icon-back">
+      <!-- <button  float-left class="icon-back">
          <ion-icon (click)="goback()" name="arrow-back"></ion-icon>
-      </button>
+      </button> -->
+      <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
       <ion-title float-left text-center>Setting</ion-title>
    </ion-navbar>
 </ion-header>
 
 
 <ion-content>
-	<ion-card>
+	<ion-card class="card-setting">
 	    <ion-card-content>
 			<ion-grid>
 				<ion-row text-center>
 					<ion-col col-12 text-center>
-						<img *ngIf="img_camera == ''" (click)="clickImage()" class="img-profile"  src="{{infomation.img_profile}}" />
-						<img *ngIf="img_camera != ''" (click)="clickImage()" class="img-profile" src="{{img_camera}}">
-						
+						<div class="border-image">
+							<img *ngIf="img_camera == ''" (click)="clickImage()" class="img-profile"  src="{{infomation.img_profile}}" />
+							<img *ngIf="img_camera != ''" (click)="clickImage()" class="img-profile" src="{{img_camera}}">
+							<ion-icon (click)="clickImage()" class="icon-img" name="camera"></ion-icon>
+						</div>
+						<p text-center>{{infomation.email}}</p>
 					</ion-col>
 				</ion-row>
 				

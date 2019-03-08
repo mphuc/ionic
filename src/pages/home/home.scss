@@ -31,10 +31,7 @@ page-home {
 	.card-title-md{
 		padding: 0px;
 	}
-	.toolbar-background{
-		background: #4CAF50;
-		color: #fff;
-	}
+	
 	.header .bar-buttons,.header .toolbar-title,.header .notifications{
 		color: #fff;
 	}
@@ -113,5 +110,26 @@ page-home {
 	}
 	.label-ios { 
 	    font-size: 12px;
+	}
+	.notifications_div{
+		position: relative;
+	    width: 30px;
+    	float: right;
+	}
+	.notifications_div span{
+		position: absolute;
+	    top: 0px;
+	    font-size: 10px;
+	    background: red;
+	    border-radius: 50%;
+	    width: 15px;
+	    height: 15px;
+	    text-align: center;
+	    border: none;
+	    line-height: 14px;
+	    font-weight: bold;
+	    border: 1px solid #fff;
+	    right: 6px;
+	    color: #fff;
 	}
 }

@@ -7,8 +7,11 @@
 <ion-header>
 
   <ion-navbar>
-  	<button  float-left class="icon-back">
+  	<!-- <button  float-left class="icon-back">
       <ion-icon  name="arrow-back" (click)="goback()"></ion-icon>
+    </button> -->
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
     </button>
 	<ion-title float-left text-center>Withdraw</ion-title>
     
@@ -85,26 +88,31 @@
 					
 				</ion-row>
 				<ion-row class="">
-					<ion-col >
+					<ion-col  col-5>
 						<ion-item class="border-bottom">
 						    <ion-label stacked>Amount</ion-label>
 						    <ion-input [(ngModel)]="form.amount" name="amount" type="number" text-right placeholder="0,0000" (keyup)='onChangeInput($event.target.value)'></ion-input>
 					  	</ion-item>
 					</ion-col>
-				
-					<ion-col>
+					<ion-col col-2>
+						<img style="width: 30px;margin: 0 auto; margin-top: 16px;" src="assets/imgs/exchange.png">
+					</ion-col>
+					<ion-col  col-5>
 					  	<ion-item class="border-bottom input-readonly">
 						    <ion-label stacked style="color:#cecdcd !important">Estimate USD</ion-label>
 						    <ion-input class="amount_estimate" [(ngModel)]="form.amount_estimate" name="amount_estimate" type="number" text-right placeholder="0,0000" readonly="true"></ion-input>
+
 					  	</ion-item>
 					</ion-col>
 				</ion-row>
 				<ion-row>
-					<ion-col>
+					<ion-col style="position: relative;">
 					  	<ion-item class="border-bottom">
 						    <ion-label stacked>Address</ion-label>
-						    <ion-input [(ngModel)]="form.wallet" name="wallet" type="text" text-right placeholder="Address"></ion-input>
+						    <ion-input style="font-size: 14px" [(ngModel)]="form.wallet" text-left name="wallet" type="text" placeholder=""></ion-input>
+
 					  	</ion-item>
+					  	<ion-icon class="qr-scanner" (click)="scanCode()" name="qr-scanner"></ion-icon>
 					</ion-col>
 				</ion-row>
 				<ion-row>

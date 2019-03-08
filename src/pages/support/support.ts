@@ -185,6 +185,7 @@ export class SupportPage {
         .subscribe((data) => {
 			if (data.length > 0)
 			{
+				this.count_history = data.length;
 				for(let item of data) {
 				  	this.history.push({
 				  		"_id" : item._id,

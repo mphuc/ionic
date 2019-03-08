@@ -1,7 +1,5 @@
 page-support {
-	.border{
-		border:1px solid #eee;
-	}
+	
 	.text_description{
 		padding: 10px 20px;
 	    line-height: 22px;
@@ -58,7 +56,7 @@ page-support {
 	}
 	.button-default  {
 	    padding: 19px !important;
-	    background: #4CAF50 !important;
+	    background: #FF5722 !important;
 	    margin-top: 22px;
 	    width: 80%;
 	    margin: 0 auto;
@@ -120,7 +118,7 @@ page-support {
 		font-size: 16px;
 	}
 	.border.input , .border.textarea{
-		border: 1px solid #eee;
+		border-bottom: 1px solid #eee !important;
 		border-radius: 5px !important;
 		margin-bottom: 20px;
 		padding: 5px 15px;

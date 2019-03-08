@@ -8,7 +8,8 @@ page-lock {
 		text-align: center;
 	    font-size: 30px;
 	    height: 65px;
-	    background: #4CAF50;
+	    background: url(../assets/imgs/dash-bg.jpg) no-repeat center;
+    	background-size: cover;
 	    color: #fff;
 	    border-left: none;
 	    border-bottom: none;
@@ -16,7 +17,7 @@ page-lock {
 	}
 
 	.keyboard ion-col:active{
-	    background: #37c53d;
+	    background: #0082c5;
 	}
 	.logo{
 		margin-top: 8%;
@@ -37,12 +38,12 @@ page-lock {
 		width: 40px;
 		height: 40px;
 		border-radius: 50%;
-		border: 1px solid #4caf50;
+		border: 1px solid #00a9ee;
 		margin-right: 10px;
 		float: left;	
 		margin-top:10px;
 	}
 	.pin span.active{
-		background: #4caf50;
+		background: #00a9ee;
 	}
 }

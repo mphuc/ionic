@@ -117,7 +117,10 @@ export class RegisterPage {
 	      
 	      let string = barcodeData.text;
 	      let string_slip = string.split("_");
-	      this.customer_sponser = string_slip[0].slice(9);
+
+	      if (string_slip[1])
+	      {
+	      	this.customer_sponser = string_slip[0].slice(9);
 		    let toast = this.toastCtrl.create({
 		      message: 'You are registered with sponser '+string_slip[1],
 		      position: 'top',
@@ -126,6 +129,12 @@ export class RegisterPage {
 		      
 		    });
 		    toast.present();
+	      }
+	      else
+	      {
+	      	this.noQrcode();
+	      }
+	      	
 		  
   		  
 	    }, (err) => {

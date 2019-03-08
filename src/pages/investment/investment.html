@@ -7,9 +7,12 @@
 <ion-header>
 
   <ion-navbar>
-  	<button  float-left class="icon-back">
-      <ion-icon  name="arrow-back" (click)="goback()"></ion-icon>
+  	<button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
     </button>
+  	<!-- <button  float-left class="icon-back">
+      <ion-icon  name="arrow-back" (click)="goback()"></ion-icon>
+    </button> -->
 	<ion-title float-left text-center>Investment</ion-title>
     
   </ion-navbar>
@@ -23,6 +26,13 @@
   	</ion-refresher>
   	
 	<ion-card>
+		<ion-grid *ngIf="number_dialing > 0">
+			<ion-row>
+				<ion-col>
+					<p class="dialing_notifi">You have {{number_dialing}} turns. <span (click)="ViewDialing()">Turn now</span></p>
+				</ion-col>
+			</ion-row>
+		</ion-grid>
 		<ion-card-header>
 	        <ion-card-title>Electronic wallet</ion-card-title>
 	    </ion-card-header>
@@ -129,16 +139,18 @@
 				</ion-row>
 			    
 				<ion-row>
-					<ion-col >
+					<ion-col col-5>
 						<ion-item class="border-bottom">
 						    <ion-label stacked>Package</ion-label>
 						    <ion-input [(ngModel)]="form.amount" name="amount" type="number" text-right placeholder="0,0000" (keyup)='onChangeInput($event.target.value)'></ion-input>
 					  	</ion-item>
 					</ion-col>
-				
-					<ion-col>
+					<ion-col col-2>
+						<img style="width: 30px;margin: 0 auto; margin-top: 16px;" src="assets/imgs/exchange.png">
+					</ion-col>
+					<ion-col col-5>
 					  	<ion-item class="border-bottom input-readonly">
-						    <ion-label stacked>Estimate </ion-label>
+						    <ion-label stacked>Estimate USD</ion-label>
 						    <ion-input [(ngModel)]="form.amount_estimate" name="amount_estimate" type="number" text-right placeholder="0,0000" readonly="true"></ion-input>
 					  	</ion-item>
 					</ion-col>

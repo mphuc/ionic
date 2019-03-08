@@ -33,6 +33,8 @@ import { SupportDetailPage } from '../pages/support-detail/support-detail';
 import { VerificationAccountPage } from '../pages/verification-account/verification-account';
 import { ProfitHistoryPage } from '../pages/profit-history/profit-history';
 import { NotificationDetaiPage } from '../pages/notification-detai/notification-detai';
+import { DialingPage } from '../pages/dialing/dialing';
+
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -47,7 +49,7 @@ import { ReffralServerProvider } from '../providers/reffral-server/reffral-serve
 import { Camera } from '@ionic-native/camera';
 import { HeaderColor } from '@ionic-native/header-color';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
-import { FileTransfer } from '@ionic-native/file-transfer';
+import { FileTransfer } from '@ionic-native/file-transfer'; 
 @NgModule({
   declarations: [
     MyApp,
@@ -74,7 +76,8 @@ import { FileTransfer } from '@ionic-native/file-transfer';
     SupportDetailPage,
     VerificationAccountPage,
     ProfitHistoryPage,
-    NotificationDetaiPage
+    NotificationDetaiPage,
+    DialingPage
   ],
   imports: [
     BrowserModule,
@@ -108,7 +111,8 @@ import { FileTransfer } from '@ionic-native/file-transfer';
     SupportDetailPage,
     VerificationAccountPage,
     ProfitHistoryPage,
-    NotificationDetaiPage
+    NotificationDetaiPage,
+    DialingPage
   ],
   providers: [
     StatusBar,

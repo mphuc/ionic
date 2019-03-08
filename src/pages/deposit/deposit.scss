@@ -35,7 +35,8 @@ page-deposit {
 	    border-radius: 12px;
 	}
 	.border-tab.active{
-		background: #4caf50;
+		background: url(../assets/imgs/dash-bg.jpg) no-repeat center;
+    	background-size: cover;
 	}
 	.border-tab.active h3{
 		color: #fff;

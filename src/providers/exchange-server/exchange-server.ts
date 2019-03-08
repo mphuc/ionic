@@ -27,7 +27,7 @@ export class ExchangeServerProvider {
       .map(this.extractData)
       .catch(this.catchError)
     }
-      
+       
     GetHisroryExchange(customer_id: string,start : number, limit : number){
       let body = {customer_id: customer_id, start: start,  limit: limit};
       return this.http.post(MyConfig.data.url+'/api/exchange/get-history',body)
@@ -149,7 +149,38 @@ export class ExchangeServerProvider {
       .catch(this.catchError)
     }
     
+    
+    GetHisroryDialing(customer_id: string,start : number, limit : number){
+      let body = {customer_id: customer_id, start: start,  limit: limit};
+      return this.http.post(MyConfig.data.url+'/api/exchange/get-history-dialing',body)
+      .do(this.logResponse)
+      .map(this.extractData)
+      .catch(this.catchError)
+    }
 
+    GetNumberDialing(customer_id: string){
+      let body = {customer_id: customer_id};
+      return this.http.post(MyConfig.data.url+'/api/exchange/get-number-dialing',body)
+      .do(this.logResponse)
+      .map(this.extractData)
+      .catch(this.catchError)
+    }
+
+    UpdateDialing(customer_id: string,number_random: number){
+      let body = {customer_id: customer_id,number_random:number_random};
+      return this.http.post(MyConfig.data.url+'/api/exchange/update-number-dialing',body)
+      .do(this.logResponse)
+      .map(this.extractData)
+      .catch(this.catchError)
+    }
+
+    CountNotification(customer_id: string){
+      let body = {customer_id: customer_id};
+      return this.http.post(MyConfig.data.url+'/api/exchange/count-notification',body)
+      .do(this.logResponse)
+      .map(this.extractData)
+      .catch(this.catchError)
+    }
     private catchError(error : Response){
 		//console.log(error);
 		return Observable.throw(error.json().error || "server login error");

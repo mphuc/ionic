@@ -8,6 +8,7 @@ import { DetailWithdrawPage } from '../detail-withdraw/detail-withdraw';
 import { DepositServerProvider } from '../../providers/deposit-server/deposit-server';
 import { ExchangeServerProvider } from '../../providers/exchange-server/exchange-server';
 import { WithdrawServerProvider } from '../../providers/withdraw-server/withdraw-server';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 /**
  * Generated class for the DepositPage page.
  *
@@ -39,7 +40,7 @@ export class WithdrawPage {
 	public alertCtrl: AlertController,
   	public WithdrawServer : WithdrawServerProvider,
   	public platform: Platform,
-  	
+  	private barcodeScanner: BarcodeScanner
   	) {
   }
 
@@ -312,7 +313,7 @@ export class WithdrawPage {
 										toast.present();
 				            			this.form['amount_estimate'] = '';
 				            			this.form['amount'] = '';
-				            			this.form['currency'] = '';
+				            			
 				            			this.form['wallet'] = '';
 										this.reLoadPage();
 
@@ -344,6 +345,31 @@ export class WithdrawPage {
 					
 			}
 		}
+	}
+
+	scanCode() {
+    
+	    this.barcodeScanner.scan({
+	      preferFrontCamera : false,
+	      showFlipCameraButton : true,
+	      showTorchButton : true,
+	      disableSuccessBeep : true,
+	      prompt : ''
+	    }).then(barcodeData => {
+	      
+	      let string = barcodeData.text;
+	      if (string)
+	      {
+	      	this.form['wallet'] = string;
+	      }
+	      else
+	      {
+	      	this.AlertToast('Error Wallet');
+	      }
+	    }, (err) => {
+	    	this.form['wallet'] = '';
+	        this.AlertToast('Error Wallet');
+	    });
 	}
 
 	ViewDetailWithdraw (_id){

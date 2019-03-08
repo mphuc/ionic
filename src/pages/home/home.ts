@@ -16,6 +16,7 @@ export class HomePage {
 	balance = {};
 	price_coin = {};
 	customer_id :any;
+	count_notifications = 0;
   constructor(
   	public navCtrl: NavController, 
 	public navParams: NavParams,
@@ -42,6 +43,16 @@ export class HomePage {
 			    content: 'Please wait...'
 			  	});
 			  	loading.present();
+
+			  	this.ExchangeServer.CountNotification(this.customer_id)
+		        .subscribe((data) => {
+		        	
+					if (data.status == 'complete')
+					{
+						this.count_notifications = data.count_notifications;
+					}
+					
+		        })
 
 			  	this.ExchangeServer.LoadPrice()
 		        .subscribe((data) => {
@@ -128,7 +139,17 @@ export class HomePage {
 					this.balance['xrp_balance'] = (parseFloat(data.xrp_balance)/100000000).toFixed(8);
 					this.balance['ltc_balance'] = (parseFloat(data.ltc_balance)/100000000).toFixed(8);
 				}
-				refresher.complete();
+
+				this.ExchangeServer.CountNotification(this.customer_id)
+		        .subscribe((data) => {
+		        	
+					if (data.status == 'complete')
+					{
+						this.count_notifications = data.count_notifications;
+					}
+					refresher.complete();
+		        })
+				
 	        })
 
         })
